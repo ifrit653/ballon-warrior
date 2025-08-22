@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64gyudth4wj3"]
+
+[ext_resource type="PackedScene" uid="uid://crtcokigi5wcv" path="res://Scenes/character_body_2d.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="2_8gbba"]
+
+[node name="Main" type="Node"]
+
+[node name="ArcadeLevel" parent="." instance=ExtResource("2_8gbba")]
+
+[node name="groundMapLayer" parent="ArcadeLevel" index="0"]
+position = Vector2(-564, -360)
+
+[node name="Node2D" parent="." instance=ExtResource("1_bo1nx")]
+position = Vector2(317, 333)
+
+[editable path="ArcadeLevel"]
