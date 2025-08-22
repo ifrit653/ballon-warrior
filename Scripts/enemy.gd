@@ -91,6 +91,8 @@ func choose_direction() -> void:
 
 
 var y_delta
+var health_decrease_count = 0  # Track how many times health decreased
+
 func _on_area_2d_body_entered(body):
 	if (body == player):
 		var y_delta = position.y - body.position.y
@@ -99,4 +101,8 @@ func _on_area_2d_body_entered(body):
 			queue_free()
 		else:
 			print("Decrease player health")
-				  
+			health_decrease_count += 1
+			
+			# Check if health decreased twice
+			if health_decrease_count >= 2:
+				get_tree().reload_current_scene()
