@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://k16p7xnmhhnl"]
+
+[ext_resource type="Script" uid="uid://86rnq6gywt2d" path="res://Scripts/platform.gd" id="1_1rc8e"]
+[ext_resource type="Texture2D" uid="uid://vq1ikfye8pjg" path="res://Assets/Tiles_pack/Tileset_1.png" id="2_n5262"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rc8e"]
+
+[node name="Platform" type="StaticBody2D"]
+script = ExtResource("1_1rc8e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n5262")
+region_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1rc8e")

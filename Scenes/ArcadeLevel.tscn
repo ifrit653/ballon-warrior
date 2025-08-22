@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://b4bjra2c66cbv"]
+[gd_scene load_steps=6 format=4 uid="uid://b4bjra2c66cbv"]
 
 [ext_resource type="Texture2D" uid="uid://vq1ikfye8pjg" path="res://Assets/Tiles_pack/Tileset_1.png" id="1_k5b35"]
+[ext_resource type="Script" uid="uid://iux7gq0fwnx7" path="res://Scripts/platform_manager.gd" id="2_3hbt0"]
 
 [sub_resource type="TileSet" id="TileSet_cmhw2"]
 tile_size = Vector2i(32, 32)
@@ -198,3 +199,6 @@ tile_map_data = PackedByteArray("AAAeABwAAQAEAAMAAAAfABwAAQAEAAMAAAAgABwAAQAEAAM
 tile_set = SubResource("TileSet_d2m2c")
 
 [node name="waterTileMap" type="TileMapLayer" parent="."]
+
+[node name="platformManager" type="Node" parent="."]
+script = ExtResource("2_3hbt0")

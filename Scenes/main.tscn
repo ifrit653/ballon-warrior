@@ -1,16 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://c64gyudth4wj3"]
+[gd_scene load_steps=6 format=3 uid="uid://c64gyudth4wj3"]
 
 [ext_resource type="PackedScene" uid="uid://crtcokigi5wcv" path="res://Scenes/character_body_2d.tscn" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://djae7uwhqrgua" path="res://Scripts/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://k16p7xnmhhnl" path="res://Scenes/platform.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://bh6d3lnk1i5x" path="res://Scripts/platform_spawner.gd" id="3_8gbba"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
+script = ExtResource("1_kry3j")
+
+[node name="Player" parent="." instance=ExtResource("1_bo1nx")]
+position = Vector2(318, 400)
+
+[node name="Camera2D" type="Camera2D" parent="Player/CharacterBody2D" index="3"]
+position = Vector2(94, 85)
+
+[node name="Platform" parent="." instance=ExtResource("2_bo1nx")]
+constant_linear_velocity = Vector2(0, 500)
+
+[node name="PlatformSpawner" type="Node2D" parent="."]
+script = ExtResource("3_8gbba")
+platform_scene = ExtResource("2_bo1nx")
 
 [node name="ArcadeLevel" parent="." instance=ExtResource("2_8gbba")]
+position = Vector2(-4, 106)
 
-[node name="groundMapLayer" parent="ArcadeLevel" index="0"]
-position = Vector2(-564, -360)
-
-[node name="Node2D" parent="." instance=ExtResource("1_bo1nx")]
-position = Vector2(317, 333)
-
-[editable path="ArcadeLevel"]
+[editable path="Player"]
