@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0rippb2kf5gm"]
+[gd_scene load_steps=5 format=3 uid="uid://crtcokigi5wcv"]
 
 [ext_resource type="Texture2D" uid="uid://cr00nshr0258g" path="res://Assets/NES-Balloon Fight-Miscellaneous-General-Sprites.png" id="2_ghijl"]
 
@@ -42,9 +42,6 @@ radius = 22.0227
 radius = 18.0
 height = 56.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ymxaj"]
-distance = -538.0
-
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -66,8 +63,3 @@ shape = SubResource("CircleShape2D_88kja")
 position = Vector2(98, 35)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_it8n0")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_ymxaj")
