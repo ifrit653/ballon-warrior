@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://dg7hbuj7f0bur"]
+[gd_scene load_steps=8 format=4 uid="uid://dg7hbuj7f0bur"]
 
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="6_21xkr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
 
@@ -45,16 +46,63 @@ script = ExtResource("3_jjvhh")
 position = Vector2(506, 980)
 shape = SubResource("WorldBoundaryShape2D_21xkr")
 
-[node name="Node2D2" parent="." instance=ExtResource("3_8gbba")]
+[node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_21xkr")
+
+[node name="Score" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Score"]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 51.0
+scale = Vector2(2.53133, 1.21387)
+
+[node name="Label" type="Label" parent="Score/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 0.301205
+offset_top = 9.0
+offset_right = 40.3012
+offset_bottom = 32.0
+scale = Vector2(0.544572, 1.10353)
+text = "SCORE : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Node2D2" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(745, 400)
+patrol_range_x = 250.0
+patrol_range_y = 30.0
+direction_change_time = 3.0
+flap_speed = 3.0
+flap_height = 10.0
 
-[node name="Node2D3" parent="." instance=ExtResource("3_8gbba")]
+[node name="Node2D3" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(209, 90)
+patrol_range_x = 250.0
+patrol_range_y = 30.0
+direction_change_time = 3.0
+flap_speed = 3.0
+flap_height = 10.0
 
-[node name="Node2D4" parent="." instance=ExtResource("3_8gbba")]
+[node name="Node2D4" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(543, -427)
+patrol_range_x = 250.0
+patrol_range_y = 30.0
+direction_change_time = 3.0
+flap_speed = 3.0
+flap_height = 10.0
 
-[node name="Node2D5" parent="." instance=ExtResource("3_8gbba")]
+[node name="Node2D5" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(663, -1069)
+patrol_range_x = 250.0
+patrol_range_y = 30.0
+direction_change_time = 3.0
+flap_speed = 3.0
+flap_height = 10.0
 
 [editable path="ArcadeLevel"]

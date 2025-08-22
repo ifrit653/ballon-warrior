@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 const SPEED := 150.0
-@onready var player: CharacterBody2D = $"../Node2D"
+@onready var player : CharacterBody2D = $"../Node2D"
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var ray_right: RayCast2D = $RayCast2Dhighreight
@@ -89,7 +89,7 @@ func choose_direction() -> void:
 	
 	timer.start()
 
-
+@onready var game_manager: Node = %"Game Manager"
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 
@@ -98,7 +98,8 @@ func _on_area_2d_body_entered(body):
 		var y_delta = position.y - body.position.y
 		if (y_delta > 50.0):
 			print("Destroy enemy") 
-			queue_free()
+			queue_free() 
+			game_manager.add_point()
 		else:
 			print("Decrease player health")
 			health_decrease_count += 1
