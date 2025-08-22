@@ -1,123 +1,56 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbw5n435b4tgq"]
 
+[ext_resource type="Script" uid="uid://ctmpoaw08c7ks" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://cr00nshr0258g" path="res://Assets/NES-Balloon Fight-Miscellaneous-General-Sprites.png" id="1_hghv2"]
-
-[sub_resource type="GDScript" id="GDScript_hghv2"]
-script/source = "extends RigidBody2D
-
-const SPEED := 150.0
-const FLIGHT_FORCE := 400.0
-
-@onready var sprite: Sprite2D = $Sprite2D
-
-# --- Flight constraints (relative to spawn) ---
-var spawn_position: Vector2
-@export var max_height: float = 200.0   # max distance above spawn
-@export var max_left: float = 200.0     # max distance left of spawn
-@export var max_right: float = 200.0    # max distance right of spawn
-
-# Timer for random direction shifts
-var movement_timer: Timer
-var current_direction: Vector2 = Vector2.ZERO
-
-# Random change intervals (seconds)
-@export var min_dir_change_time: float = 2.0
-@export var max_dir_change_time: float = 5.0
-
-# Smoothness factor for bouncing/steering
-@export var steer_strength: float = 0.1
-
-func _ready() -> void:
-	spawn_position = global_position
-	
-	# Configure RigidBody2D for flight
-	gravity_scale = 0.0
-	linear_damp = 0.5
-	
-	setup_timer()
-	choose_random_direction()
-
-func setup_timer() -> void:
-	movement_timer = Timer.new()
-	movement_timer.one_shot = true
-	add_child(movement_timer)
-	movement_timer.timeout.connect(_on_movement_timer_timeout)
-
-func _physics_process(delta: float) -> void:
-	# Flip sprite depending on movement
-	if current_direction.x > 0:
-		sprite.flip_h = true
-	elif current_direction.x < 0:
-		sprite.flip_h = false
-	
-	var future_position = global_position + current_direction * SPEED * delta
-	var desired_direction = current_direction
-	
-	# --- SOFT BOUNCE CONSTRAINTS ---
-	if future_position.y > spawn_position.y:
-		# Below spawn → steer upward
-		desired_direction = Vector2(current_direction.x, -1).normalized()
-	elif future_position.y < spawn_position.y - max_height:
-		# Too high → steer downward
-		desired_direction = Vector2(current_direction.x, 1).normalized()
-	
-	if future_position.x < spawn_position.x - max_left:
-		# Too far left → steer right
-		desired_direction = Vector2(1, current_direction.y).normalized()
-	elif future_position.x > spawn_position.x + max_right:
-		# Too far right → steer left
-		desired_direction = Vector2(-1, current_direction.y).normalized()
-	
-	# Smoothly adjust direction toward the desired one
-	current_direction = current_direction.lerp(desired_direction, steer_strength).normalized()
-	
-	# Always keep flying
-	linear_velocity = current_direction * SPEED
-
-# --- Random direction selection ---
-func choose_random_direction() -> void:
-	var angle = randf() * TAU
-	var dir = Vector2(cos(angle), sin(angle)).normalized()
-	
-	# Don’t allow downward start if already at spawn height
-	if global_position.y >= spawn_position.y and dir.y > 0:
-		dir.y = -abs(dir.y)
-	
-	current_direction = dir
-	restart_movement_timer()
-
-func restart_movement_timer() -> void:
-	var wait_time = randf_range(min_dir_change_time, max_dir_change_time)
-	movement_timer.start(wait_time)
-
-func _on_movement_timer_timeout() -> void:
-	choose_random_direction()
-"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0kj"]
 radius = 20.0
 height = 98.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_afpow"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afpow"]
+radius = 26.0
+height = 52.0
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="RigidBody2D"]
+position = Vector2(598, 300)
+script = ExtResource("1_1f0kj")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-script = SubResource("GDScript_hghv2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(586, 349)
-shape = SubResource("CapsuleShape2D_1f0kj")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(587, 356)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.62506, -18.7499)
 scale = Vector2(4.54412, 4.40385)
 texture = ExtResource("1_hghv2")
 region_enabled = true
 region_rect = Rect2(117.592, 1.73426, 17.1165, 26.5965)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.625, -25.7499)
+shape = SubResource("CapsuleShape2D_1f0kj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-2, 557)
-shape = SubResource("WorldBoundaryShape2D_afpow")
+[node name="RayCast2Dhighreight" type="RayCast2D" parent="."]
+position = Vector2(5.62494, -31.7499)
+scale = Vector2(3.65972, -4.60174)
+target_position = Vector2(13.6622, 8.04043)
+
+[node name="RayCast2Dhighleft" type="RayCast2D" parent="."]
+position = Vector2(5.62494, -31.7499)
+scale = Vector2(3.65972, -4.60174)
+target_position = Vector2(-15.8482, 8.25774)
+
+[node name="RayCast2Dlowleft2" type="RayCast2D" parent="."]
+position = Vector2(7.62494, -3.74994)
+scale = Vector2(3.65972, -4.60174)
+target_position = Vector2(-15.8482, -9.7789)
+
+[node name="RayCast2Dlowright" type="RayCast2D" parent="."]
+position = Vector2(7.62494, -3.74994)
+scale = Vector2(3.65972, -4.60174)
+target_position = Vector2(14.2087, -9.12698)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(51, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-50, -53)
+shape = SubResource("CapsuleShape2D_afpow")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
