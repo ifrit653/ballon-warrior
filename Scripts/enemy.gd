@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 const SPEED := 150.0
+@onready var player: CharacterBody2D = $"../Node2D"
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var ray_right: RayCast2D = $RayCast2Dhighreight
@@ -16,7 +17,9 @@ var timer: Timer
 var flap_time: float = 0.0
 var base_y: float = 0.0
 
-@export var patrol_range: float = 200.0
+# --- Patrol ranges ---
+@export var patrol_range_x: float = 250.0   # Horizontal range
+@export var patrol_range_y: float = 30.0   # Vertical range
 @export var direction_change_time: float = 3.0
 @export var flap_speed: float = 3.0  # How fast the wings flap
 @export var flap_height: float = 10.0  # How much up/down movement
@@ -49,15 +52,16 @@ func _physics_process(delta: float) -> void:
 	linear_velocity = movement
 	
 	# Check patrol bounds
-	if global_position.x < spawn_position.x - patrol_range:
+	if global_position.x < spawn_position.x - patrol_range_x:
 		direction.x = 1
-	elif global_position.x > spawn_position.x + patrol_range:
+	elif global_position.x > spawn_position.x + patrol_range_x:
 		direction.x = -1
-	
-	if global_position.y < spawn_position.y - patrol_range:
+
+	if global_position.y < spawn_position.y - patrol_range_y:
 		direction.y = 1
-	elif global_position.y > spawn_position.y:
+	elif global_position.y > spawn_position.y + patrol_range_y:
 		direction.y = -1
+
 	
 	# Raycast collision reactions
 	if ray_right.is_colliding():
@@ -84,3 +88,15 @@ func choose_direction() -> void:
 	).normalized()
 	
 	timer.start()
+
+
+var y_delta
+func _on_area_2d_body_entered(body):
+	if (body == player):
+		var y_delta = position.y - body.position.y
+		if (y_delta > 50.0):
+			print("Destroy enemy") 
+			queue_free()
+		else:
+			print("Decrease player health")
+				  
