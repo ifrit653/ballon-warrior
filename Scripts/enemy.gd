@@ -1,13 +1,17 @@
 extends RigidBody2D
+@onready var player: CharacterBody2D = $"../../Node2D"
 
 const SPEED := 150.0
-@onready var player : CharacterBody2D = $"../Node2D"
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var ray_right: RayCast2D = $RayCast2Dhighreight
 @onready var ray_left: RayCast2D = $RayCast2Dhighleft
 @onready var ray_low_left: RayCast2D = $RayCast2Dlowleft2
 @onready var ray_low_right: RayCast2D = $RayCast2Dlowright
+@onready var player_death: AudioStreamPlayer = $"player death"
+@onready var mob_sfx: AudioStreamPlayer2D = $mob_sfx
+@onready var hit_damage: AudioStreamPlayer = $Sprite2D/hit_damage
+@export var floating_label_scene = preload("res://Scenes/control.tscn")
 
 var spawn_position: Vector2
 var direction: Vector2 = Vector2.RIGHT
@@ -24,6 +28,7 @@ var base_y: float = 0.0
 @export var flap_speed: float = 3.0  # How fast the wings flap
 @export var flap_height: float = 10.0  # How much up/down movement
 
+
 func _ready() -> void:
 	spawn_position = global_position
 	base_y = global_position.y  # Store the base flying height
@@ -39,7 +44,8 @@ func _ready() -> void:
 	timer.timeout.connect(choose_direction)
 	add_child(timer)
 	timer.start()
-
+	mob_sfx.play()
+		
 func _physics_process(delta: float) -> void:
 	# Update flapping animation
 	flap_time += delta
@@ -93,17 +99,61 @@ func choose_direction() -> void:
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 
+const killSpot := 60.0
+
+# Add these variables at the top of your script
+var can_take_damage: bool = true
+var damage_cooldown: float = 1.0  # 1 second cooldown
+
 func _on_area_2d_body_entered(body):
 	if (body == player):
 		var y_delta = position.y - body.position.y
-		if (y_delta > 50.0):
-			print("Destroy enemy") 
-			queue_free() 
+		
+		if (y_delta > killSpot):
+			print("Destroy enemy")
 			game_manager.add_point()
-		else:
-			print("Decrease player health")
-			health_decrease_count += 1
+			spawn_floating_text("+100")  # Call the function here
+			queue_free() 
 			
-			# Check if health decreased twice
-			if health_decrease_count >= 2:
-				get_tree().reload_current_scene()
+		elif (y_delta < -killSpot):
+			# Player is under the enemy - take damage (with cooldown)
+			if can_take_damage:
+				print("Decrease player health")
+				hit_damage.play()
+				health_decrease_count += 1
+				
+				# Check if health decreased twice - immediate death
+				if health_decrease_count >= 2:
+					print("dead")
+					player_death.play()
+					await get_tree().create_timer(0.5).timeout
+					get_tree().reload_current_scene()
+				else:
+					# Only start cooldown if player didn't die
+					can_take_damage = false
+					await get_tree().create_timer(damage_cooldown).timeout
+					can_take_damage = true
+		else:
+			# Side collision - take damage (with cooldown)
+			if can_take_damage:
+				print("Decrease player health")
+				hit_damage.play()
+				health_decrease_count += 1
+				
+				# Check if health decreased twice - immediate death
+				if health_decrease_count >= 2:
+					print("dead")
+					player_death.play()
+					await get_tree().create_timer(0.5).timeout
+					get_tree().reload_current_scene()
+				else:
+					# Only start cooldown if player didn't die
+					can_take_damage = false
+					await get_tree().create_timer(damage_cooldown).timeout
+					can_take_damage = true
+
+# Move these functions outside of the collision function
+func spawn_floating_text(text: String):
+	var label = floating_label_scene.instantiate()
+	get_parent().add_child(label)  # Add to the scene
+	label.show_text(text, global_position)

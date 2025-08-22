@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbw5n435b4tgq"]
+[gd_scene load_steps=8 format=3 uid="uid://bbw5n435b4tgq"]
 
 [ext_resource type="Script" uid="uid://ctmpoaw08c7ks" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://cr00nshr0258g" path="res://Assets/NES-Balloon Fight-Miscellaneous-General-Sprites.png" id="1_hghv2"]
+[ext_resource type="AudioStream" uid="uid://calp1u5mqb53l" path="res://music/Hit damage 1.wav" id="3_0830c"]
+[ext_resource type="AudioStream" uid="uid://ros2orvsyyjo" path="res://music/Balloon start riding 2.wav" id="3_afpow"]
+[ext_resource type="AudioStream" uid="uid://7qbua6mj6qnx" path="res://music/Balloon-ride-1.mp3" id="4_287tu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0kj"]
-radius = 20.0
+radius = 18.375
 height = 98.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afpow"]
-radius = 26.0
-height = 52.0
+radius = 22.0
+height = 104.0
 
 [node name="Node2D" type="RigidBody2D"]
 position = Vector2(598, 300)
@@ -22,8 +25,18 @@ texture = ExtResource("1_hghv2")
 region_enabled = true
 region_rect = Rect2(117.592, 1.73426, 17.1165, 26.5965)
 
+[node name="hit_damage" type="AudioStreamPlayer" parent="Sprite2D"]
+stream = ExtResource("3_0830c")
+volume_db = 8.0
+
+[node name="mob_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_287tu")
+volume_db = 3.0
+max_distance = 600.0
+attenuation = 0.297302
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.625, -25.7499)
+position = Vector2(1, -19)
 shape = SubResource("CapsuleShape2D_1f0kj")
 
 [node name="RayCast2Dhighreight" type="RayCast2D" parent="."]
@@ -50,7 +63,10 @@ target_position = Vector2(14.2087, -9.12698)
 position = Vector2(51, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-50, -53)
+position = Vector2(-50, -20)
 shape = SubResource("CapsuleShape2D_afpow")
+
+[node name="player death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_afpow")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

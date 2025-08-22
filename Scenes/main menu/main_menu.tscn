@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4lmoa4ufcqw0"]
+[gd_scene load_steps=10 format=3 uid="uid://b4lmoa4ufcqw0"]
 
 [ext_resource type="Script" uid="uid://dtr6v2w56jfoq" path="res://Scenes/main menu/main_menu.gd" id="1_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://bqit1n3qt3xgo" path="res://Scenes/main menu/ChatGPT Image Aug 22, 2025, 02_00_14 PM.png" id="2_ahnhv"]
 [ext_resource type="FontFile" uid="uid://d1vliqypamaa4" path="res://Scenes/main menu/pixel dead.ttf" id="3_3nlno"]
+[ext_resource type="AudioStream" uid="uid://bo8hbbgpb5483" path="res://music/Untitled (1).mp3" id="4_3nlno"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nb0n"]
 
@@ -125,6 +126,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3nlno")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]

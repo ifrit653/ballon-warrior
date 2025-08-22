@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://dg7hbuj7f0bur"]
+[gd_scene load_steps=11 format=4 uid="uid://dwx5hhmeoos24"]
 
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="3_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://c5iutelyqyk4b" path="res://music/Jump 1.wav" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="5_kry3j"]
 [ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="6_21xkr"]
+[ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="8_344ge"]
+[ext_resource type="AudioStream" uid="uid://csboujqg34f0t" path="res://music/Balloon start riding 1.wav" id="8_ynf5e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
 
@@ -40,15 +43,25 @@ limit_bottom = 830
 limit_smoothed = true
 script = ExtResource("3_jjvhh")
 
+[node name="jump sfx" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("4_6bp64")
+
 [node name="killzone" parent="." instance=ExtResource("5_kry3j")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(506, 980)
 shape = SubResource("WorldBoundaryShape2D_21xkr")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="killzone"]
+stream = ExtResource("8_344ge")
+autoplay = true
+
 [node name="Game Manager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("6_21xkr")
+
+[node name="score_up" type="AudioStreamPlayer" parent="Game Manager"]
+stream = ExtResource("8_ynf5e")
 
 [node name="Score" type="CanvasLayer" parent="."]
 
@@ -75,34 +88,19 @@ vertical_alignment = 1
 
 [node name="Node2D2" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(745, 400)
-patrol_range_x = 250.0
-patrol_range_y = 30.0
-direction_change_time = 3.0
-flap_speed = 3.0
-flap_height = 10.0
 
 [node name="Node2D3" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(209, 90)
-patrol_range_x = 250.0
-patrol_range_y = 30.0
-direction_change_time = 3.0
-flap_speed = 3.0
-flap_height = 10.0
 
 [node name="Node2D4" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(543, -427)
-patrol_range_x = 250.0
-patrol_range_y = 30.0
-direction_change_time = 3.0
-flap_speed = 3.0
-flap_height = 10.0
 
 [node name="Node2D5" parent="Platforms" instance=ExtResource("3_8gbba")]
 position = Vector2(663, -1069)
-patrol_range_x = 250.0
-patrol_range_y = 30.0
-direction_change_time = 3.0
-flap_speed = 3.0
-flap_height = 10.0
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_344ge")
+volume_db = -5.0
+autoplay = true
 
 [editable path="ArcadeLevel"]
