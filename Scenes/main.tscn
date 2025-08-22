@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://dg7hbuj7f0bur"]
+[gd_scene load_steps=7 format=4 uid="uid://dg7hbuj7f0bur"]
 
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="5_kry3j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
 
 [node name="Game" type="Node"]
 
@@ -24,7 +27,14 @@ position = Vector2(-5, 13)
 scale = Vector2(2, -8.557)
 limit_left = 1100
 limit_right = 1100
+limit_bottom = 830
 limit_smoothed = true
 script = ExtResource("3_jjvhh")
+
+[node name="killzone" parent="." instance=ExtResource("5_kry3j")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(506, 980)
+shape = SubResource("WorldBoundaryShape2D_21xkr")
 
 [editable path="ArcadeLevel"]
