@@ -16,6 +16,7 @@ height = 104.0
 
 [node name="Node2D" type="RigidBody2D"]
 position = Vector2(598, 300)
+scale = Vector2(0.766029, 0.718096)
 script = ExtResource("1_1f0kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://c4talvvxr188x"]
+[gd_scene load_steps=10 format=4 uid="uid://c4talvvxr188x"]
 
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="1_iflb3"]
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="2_yh4u3"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="3_mx8ng"]
-[ext_resource type="AudioStream" uid="uid://c5iutelyqyk4b" path="res://music/Jump 1.wav" id="4_dpebp"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="5_0xk2i"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="6_hinp3"]
 [ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="7_84i4k"]
@@ -43,9 +42,6 @@ limit_right = 1100
 limit_bottom = 830
 limit_smoothed = true
 script = ExtResource("3_mx8ng")
-
-[node name="jump sfx" type="AudioStreamPlayer2D" parent="Node2D"]
-stream = ExtResource("4_dpebp")
 
 [node name="killzone" parent="." instance=ExtResource("5_0xk2i")]
 

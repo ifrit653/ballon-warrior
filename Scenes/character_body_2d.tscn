@@ -1,16 +1,64 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0rippb2kf5gm"]
+[gd_scene load_steps=20 format=3 uid="uid://c0rippb2kf5gm"]
 
 [ext_resource type="Script" uid="uid://dg350dwvvb2wm" path="res://Scripts/player.gd" id="1_88kja"]
+[ext_resource type="Texture2D" uid="uid://bblhtncnl2kmu" path="res://Assets/fly1up01.png" id="2_3d168"]
 [ext_resource type="Texture2D" uid="uid://3xheog5fvgbd" path="res://Assets/fly01.png" id="2_fxof2"]
 [ext_resource type="Texture2D" uid="uid://b0xkb33qwgevq" path="res://Assets/idle01.png" id="2_pbq55"]
 [ext_resource type="Texture2D" uid="uid://ce6hu0xj1hc2m" path="res://Assets/fly02.png" id="3_601d1"]
+[ext_resource type="Texture2D" uid="uid://e3d4kx12douu" path="res://Assets/fly1up02.png" id="3_q07ms"]
 [ext_resource type="Texture2D" uid="uid://b1pmoxr1odqms" path="res://Assets/idle02.png" id="3_t38ji"]
 [ext_resource type="Texture2D" uid="uid://cpwr815pswsrf" path="res://Assets/fly03.png" id="4_6d06k"]
+[ext_resource type="Texture2D" uid="uid://durmmmgry5d21" path="res://Assets/fly1up03.png" id="4_x0qg5"]
+[ext_resource type="Texture2D" uid="uid://3mdnq5ygv05j" path="res://Assets/fly1up04.png" id="5_l447x"]
 [ext_resource type="Texture2D" uid="uid://bf26vblax3331" path="res://Assets/fly04.png" id="5_p20bj"]
 [ext_resource type="Texture2D" uid="uid://nxj3sq25a5pa" path="res://Assets/fly05.png" id="6_ancw4"]
+[ext_resource type="Texture2D" uid="uid://ui83hvcoo0a8" path="res://Assets/fly1up05.png" id="6_u736u"]
+[ext_resource type="Texture2D" uid="uid://0abg604sbnu3" path="res://Assets/idle 1uo 02.png" id="7_glyrq"]
+[ext_resource type="Texture2D" uid="uid://b8f0cu5cauw65" path="res://Assets/idle 1up 01.png" id="8_8f6q8"]
+[ext_resource type="Texture2D" uid="uid://0s0nuqwvw683" path="res://Assets/dead.png" id="16_q07ms"]
+[ext_resource type="AudioStream" uid="uid://c5iutelyqyk4b" path="res://music/Jump 1.wav" id="17_x0qg5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_601d1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3d168")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q07ms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x0qg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l447x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u736u")
+}],
+"loop": true,
+"name": &"1up_fly",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_glyrq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8f6q8")
+}],
+"loop": true,
+"name": &"1up_idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_q07ms")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fxof2")
@@ -43,12 +91,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_88kja"]
-radius = 43.7379
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_it8n0"]
 radius = 29.0
-height = 94.3807
+height = 230.782
 
 [node name="Node2D" type="CharacterBody2D"]
 script = ExtResource("1_88kja")
@@ -57,15 +102,12 @@ script = ExtResource("1_88kja")
 position = Vector2(24, -67)
 scale = Vector2(4.59375, 4.42188)
 sprite_frames = SubResource("SpriteFrames_601d1")
-animation = &"fly"
-autoplay = "idle"
-frame_progress = 0.933056
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-15, -137)
-shape = SubResource("CircleShape2D_88kja")
+animation = &"death"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -2)
+position = Vector2(-5, -54)
 rotation = 3.10116
 shape = SubResource("CapsuleShape2D_it8n0")
+
+[node name="jump sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_x0qg5")

@@ -122,7 +122,7 @@ func _on_area_2d_body_entered(body):
 		if (y_delta > killSpot):
 			print("Destroy enemy")
 			game_manager.add_point()
-			spawn_floating_text("+100")  # Call the function here
+			spawn_floating_text("+100")
 			queue_free() 
 			
 		elif (y_delta < -killSpot):
@@ -130,11 +130,12 @@ func _on_area_2d_body_entered(body):
 			if can_take_damage:
 				print("Decrease player health")
 				hit_damage.play()
-				player.flash_white()  # Add white flash effect
-				health_decrease_count += 1
+				player.flash_white()
 				
-				# Check if health decreased twice - immediate death
-				if health_decrease_count >= 2:
+				# Use Game Manager to handle damage
+				var is_dead = game_manager.take_damage()
+				
+				if is_dead:
 					print("dead")
 					player_death.play()
 					await get_tree().create_timer(0.5).timeout
@@ -149,15 +150,14 @@ func _on_area_2d_body_entered(body):
 			if can_take_damage:
 				print("Decrease player health")
 				hit_damage.play()
-				player.flash_white()  # Add white flash effect
-				health_decrease_count += 1
+				player.flash_white()
 				
-				# Check if health decreased twice - immediate death
-				if health_decrease_count >= 2:
+				# Use Game Manager to handle damage
+				var is_dead = game_manager.take_damage()
+				
+				if is_dead:
 					print("dead")
 					player_death.play()
-					await get_tree().create_timer(0.5).timeout
-					get_tree().reload_current_scene()
 				else:
 					# Only start cooldown if player didn't die
 					can_take_damage = false
