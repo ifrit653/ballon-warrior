@@ -3,14 +3,14 @@ extends RigidBody2D
 
 const SPEED := 150.0
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_right: RayCast2D = $RayCast2Dhighreight
 @onready var ray_left: RayCast2D = $RayCast2Dhighleft
 @onready var ray_low_left: RayCast2D = $RayCast2Dlowleft2
 @onready var ray_low_right: RayCast2D = $RayCast2Dlowright
 @onready var player_death: AudioStreamPlayer = $"player death"
 @onready var mob_sfx: AudioStreamPlayer2D = $mob_sfx
-@onready var hit_damage: AudioStreamPlayer = $Sprite2D/hit_damage
+@onready var hit_damage: AudioStreamPlayer = $AnimatedSprite2D/hit_damage
 @export var floating_label_scene = preload("res://Scenes/control.tscn")
 
 var spawn_position: Vector2
@@ -82,9 +82,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Always update sprite facing based on current direction
 	if direction.x > 0:
-		sprite.flip_h = true   # Face right
+		animated_sprite_2d.flip_h = true   # Face right
 	elif direction.x < 0:
-		sprite.flip_h = false  # Face left
+		animated_sprite_2d.flip_h = false  # Face left
 
 func choose_direction() -> void:
 	# Pick a new random direction
@@ -105,15 +105,15 @@ const killSpot := 50.0
 var can_take_damage: bool = true
 var damage_cooldown: float = 1.0  # 1 second cooldown
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $"../../Node2D"/AnimatedSprite2D
+@onready var animated_sprite_2dplayer: AnimatedSprite2D = $"../../Node2D"/AnimatedSprite2D
 
 func flash_white():
 	# Create a tween for smooth color transition
 	var tween = create_tween()
 	
 	# Flash white briefly
-	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE * 2, 0.1)
-	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE, 0.1)
+	tween.tween_property(animated_sprite_2dplayer, "modulate", Color.WHITE * 2, 0.1)
+	tween.tween_property(animated_sprite_2dplayer, "modulate", Color.WHITE, 0.1)
 
 func _on_area_2d_body_entered(body):
 	if (body == player):

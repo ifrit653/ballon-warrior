@@ -1,32 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbw5n435b4tgq"]
+[gd_scene load_steps=11 format=3 uid="uid://bbw5n435b4tgq"]
 
 [ext_resource type="Script" uid="uid://ctmpoaw08c7ks" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://cr00nshr0258g" path="res://Assets/NES-Balloon Fight-Miscellaneous-General-Sprites.png" id="1_hghv2"]
+[ext_resource type="Texture2D" uid="uid://dhareirmp7qd3" path="res://Assets/mob idle01.png" id="2_1dp5w"]
 [ext_resource type="AudioStream" uid="uid://calp1u5mqb53l" path="res://music/Hit damage 1.wav" id="3_0830c"]
 [ext_resource type="AudioStream" uid="uid://ros2orvsyyjo" path="res://music/Balloon start riding 2.wav" id="3_afpow"]
+[ext_resource type="Texture2D" uid="uid://bfqpt80v8cqhh" path="res://Assets/mob idle02.png" id="3_auwsv"]
+[ext_resource type="Texture2D" uid="uid://btxaiv5jh422l" path="res://Assets/mob idle03.png" id="4_8uf12"]
 [ext_resource type="AudioStream" uid="uid://7qbua6mj6qnx" path="res://music/Balloon-ride-1.mp3" id="4_287tu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0830c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1dp5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_auwsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8uf12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0kj"]
 radius = 18.375
-height = 98.0
+height = 139.257
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afpow"]
-radius = 22.0
-height = 104.0
+radius = 26.1086
+height = 142.042
 
 [node name="Node2D" type="RigidBody2D"]
 position = Vector2(598, 300)
 scale = Vector2(0.766029, 0.718096)
 script = ExtResource("1_1f0kj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.62506, -18.7499)
-scale = Vector2(4.54412, 4.40385)
-texture = ExtResource("1_hghv2")
-region_enabled = true
-region_rect = Rect2(117.592, 1.73426, 17.1165, 26.5965)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48.74)
+scale = Vector2(2.35093, 2.59996)
+sprite_frames = SubResource("SpriteFrames_0830c")
+autoplay = "default"
+frame_progress = 0.691528
 
-[node name="hit_damage" type="AudioStreamPlayer" parent="Sprite2D"]
+[node name="hit_damage" type="AudioStreamPlayer" parent="AnimatedSprite2D"]
 stream = ExtResource("3_0830c")
 volume_db = 8.0
 
@@ -37,26 +56,26 @@ max_distance = 600.0
 attenuation = 0.297302
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -19)
+position = Vector2(-3.91633, -45.9548)
 shape = SubResource("CapsuleShape2D_1f0kj")
 
 [node name="RayCast2Dhighreight" type="RayCast2D" parent="."]
-position = Vector2(5.62494, -31.7499)
+position = Vector2(5.22177, -87.732)
 scale = Vector2(3.65972, -4.60174)
 target_position = Vector2(13.6622, 8.04043)
 
 [node name="RayCast2Dhighleft" type="RayCast2D" parent="."]
-position = Vector2(5.62494, -31.7499)
+position = Vector2(-6.52713, -87.732)
 scale = Vector2(3.65972, -4.60174)
 target_position = Vector2(-15.8482, 8.25774)
 
 [node name="RayCast2Dlowleft2" type="RayCast2D" parent="."]
-position = Vector2(7.62494, -3.74994)
+position = Vector2(-3.91632, -11.1406)
 scale = Vector2(3.65972, -4.60174)
 target_position = Vector2(-15.8482, -9.7789)
 
 [node name="RayCast2Dlowright" type="RayCast2D" parent="."]
-position = Vector2(7.62494, -3.74994)
+position = Vector2(-1.30546, -18.1034)
 scale = Vector2(3.65972, -4.60174)
 target_position = Vector2(14.2087, -9.12698)
 
@@ -64,7 +83,7 @@ target_position = Vector2(14.2087, -9.12698)
 position = Vector2(51, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-50, -20)
+position = Vector2(-54.9163, -46.9549)
 shape = SubResource("CapsuleShape2D_afpow")
 
 [node name="player death" type="AudioStreamPlayer" parent="."]
