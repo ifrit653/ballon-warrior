@@ -1,0 +1,327 @@
+[gd_scene load_steps=23 format=4 uid="uid://c7fvwdvpsd16i"]
+
+[ext_resource type="Script" uid="uid://d0orl4mcx75aw" path="res://Scripts/level_2.gd" id="1_nesbo"]
+[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="1_r6dy4"]
+[ext_resource type="Script" uid="uid://is42pfo5wi23" path="res://Scripts/stars.gd" id="2_x8cy6"]
+[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="3_mln4t"]
+[ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="4_efke1"]
+[ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="5_5vonu"]
+[ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="6_7fwia"]
+[ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="7_r6jdp"]
+[ext_resource type="AudioStream" uid="uid://csboujqg34f0t" path="res://music/Balloon start riding 1.wav" id="8_kpjs3"]
+[ext_resource type="PackedScene" uid="uid://cdqo7wmuqiw75" path="res://Scenes/vagues.tscn" id="9_v0788"]
+[ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="10_1rg21"]
+[ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="13_1wcc3"]
+[ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="14_2mffb"]
+[ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_x8cy6"]
+[ext_resource type="Script" uid="uid://dcggy6ahg2gte" path="res://Scripts/game over.gd" id="15_mln4t"]
+[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_mln4t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]
+atlas = ExtResource("3_mln4t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xk2i"]
+atlas = ExtResource("3_mln4t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hinp3"]
+atlas = ExtResource("3_mln4t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84i4k"]
+atlas = ExtResource("3_mln4t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1klhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpebp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xk2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hinp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84i4k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_nesbo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = -144.0
+offset_top = -18.0
+offset_right = 2256.0
+offset_bottom = 2005.0
+scale = Vector2(0.591182, 0.371112)
+texture = ExtResource("1_r6dy4")
+
+[node name="Node" type="Node" parent="CanvasLayer"]
+script = ExtResource("2_x8cy6")
+
+[node name="star2" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(697, 110)
+scale = Vector2(1.31306, 1.39801)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.815604
+speed_scale = 2.0
+
+[node name="star7" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(675, 179)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.495909
+speed_scale = 1.5
+
+[node name="star3" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(92, 327)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.495909
+speed_scale = 0.5
+
+[node name="star12" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1195, 71)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.3
+
+[node name="star11" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1205, 24)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.6
+
+[node name="star10" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(947, 173)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+
+[node name="star9" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(386, 184)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.2
+
+[node name="star8" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(832, 61)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 0.7
+
+[node name="star20" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(243, 292)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.3
+
+[node name="star1" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(357, 58)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.187791
+speed_scale = 1.6
+
+[node name="star15" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(580, 242)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.412915
+speed_scale = 0.2
+
+[node name="star16" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(140, 64)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.412915
+speed_scale = 0.8
+
+[node name="star5" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(425, 142)
+scale = Vector2(1.39029, 1.30167)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 1.1
+
+[node name="star6" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(-81, 146)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 1.4
+
+[node name="star13" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1185, 277)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 0.9
+
+[node name="star14" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(840, 354)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 0.7
+
+[node name="star4" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1062, 99)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.7
+
+[node name="star17" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(-33, 222)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.2
+
+[node name="star18" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(421, 308)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+
+[node name="star19" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(185, 198)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 0.9
+
+[node name="ArcadeLevel" parent="." instance=ExtResource("4_efke1")]
+
+[node name="groundMapLayer" parent="ArcadeLevel" index="0"]
+position = Vector2(-540, -318)
+scale = Vector2(2.03377, 1.72086)
+tile_map_data = PackedByteArray("AAAaAB0AAQAAAAQAAAAaAB4AAQAAAAUAAAAbAB0AAQABAAQAAAAbAB4AAQABAAUAAAAcAB0AAQAAAAQAAAAcAB4AAQAAAAUAAAAdAB0AAQABAAQAAAAdAB4AAQABAAUAAAAeAB0AAQAAAAQAAAAeAB4AAQAAAAUAAAAfAB0AAQABAAQAAAAfAB4AAQABAAUAAAAgAB0AAQAAAAQAAAAgAB4AAQAAAAUAAAAhAB0AAQABAAQAAAAhAB4AAQABAAUAAAAiAB0AAQAAAAQAAAAiAB4AAQAAAAUAAAAjAB0AAQABAAQAAAAjAB4AAQABAAUAAAAkAB0AAQAAAAQAAAAkAB4AAQAAAAUAAAAlAB0AAQABAAQAAAAlAB4AAQABAAUAAAASABAAAQAAAAQAAAASABEAAQAAAAUAAAATABAAAQABAAQAAAATABEAAQABAAUAAAAUABAAAQAAAAQAAAAUABEAAQAAAAUAAAAVABAAAQABAAQAAAAVABEAAQABAAUAAAAWABAAAQAAAAQAAAAWABEAAQAAAAUAAAAXABAAAQABAAQAAAAXABEAAQABAAUAAAAYABAAAQAAAAQAAAAYABEAAQAAAAUAAAAZABAAAQABAAQAAAAZABEAAQABAAUAAAAaABAAAQAAAAQAAAAaABEAAQAAAAUAAAAbABAAAQABAAQAAAAbABEAAQABAAUAAAAlABAAAQAAAAQAAAAlABEAAQAAAAUAAAAmABAAAQABAAQAAAAmABEAAQABAAUAAAAnABAAAQAAAAQAAAAnABEAAQAAAAUAAAAoABAAAQABAAQAAAAoABEAAQABAAUAAAApABAAAQAAAAQAAAApABEAAQAAAAUAAAAqABAAAQABAAQAAAAqABEAAQABAAUAAAArABAAAQAAAAQAAAArABEAAQAAAAUAAAAsABAAAQABAAQAAAAsABEAAQABAAUAAAAtABAAAQAAAAQAAAAtABEAAQAAAAUAAAAuABAAAQABAAQAAAAuABEAAQABAAUAAAAcAAAAAQAAAAQAAAAcAAEAAQAAAAUAAAAdAAAAAQABAAQAAAAdAAEAAQABAAUAAAAeAAAAAQAAAAQAAAAeAAEAAQAAAAUAAAAfAAAAAQABAAQAAAAfAAEAAQABAAUAAAAgAAAAAQAAAAQAAAAgAAEAAQAAAAUAAAAhAAAAAQABAAQAAAAhAAEAAQABAAUAAAAiAAAAAQAAAAQAAAAiAAEAAQAAAAUAAAAjAAAAAQABAAQAAAAjAAEAAQABAAUAAAAkAAAAAQAAAAQAAAAkAAEAAQAAAAUAAAAlAAAAAQABAAQAAAAlAAEAAQABAAUAAAA=")
+
+[node name="Node2D" parent="." instance=ExtResource("5_5vonu")]
+position = Vector2(465, 398)
+scale = Vector2(0.726027, 0.619529)
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position = Vector2(-5, 13)
+scale = Vector2(2, -8.557)
+limit_left = 1100
+limit_right = 1100
+limit_bottom = 830
+limit_smoothed = true
+script = ExtResource("6_7fwia")
+
+[node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_r6jdp")
+
+[node name="score_up" type="AudioStreamPlayer" parent="Game Manager"]
+stream = ExtResource("8_kpjs3")
+
+[node name="Node2D2" parent="." instance=ExtResource("13_1wcc3")]
+position = Vector2(217, 1.00003)
+
+[node name="Node2D3" parent="." instance=ExtResource("13_1wcc3")]
+position = Vector2(839, 13)
+
+[node name="Node2D4" parent="." instance=ExtResource("13_1wcc3")]
+position = Vector2(543, -425)
+
+[node name="Score" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Score"]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 51.0
+scale = Vector2(2.53133, 1.21387)
+
+[node name="Label" type="Label" parent="Score/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 0.301205
+offset_top = 9.0
+offset_right = 40.3012
+offset_bottom = 32.0
+scale = Vector2(0.544572, 1.10353)
+text = "SCORE : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vagues" parent="." instance=ExtResource("9_v0788")]
+z_index = 3
+position = Vector2(-164, 692)
+scale = Vector2(2.95049, 2.80738)
+
+[node name="killzone" parent="Vagues" instance=ExtResource("10_1rg21")]
+position = Vector2(55.584, -308.473)
+scale = Vector2(0.338927, 0.356204)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vagues/killzone"]
+position = Vector2(506, 980)
+shape = SubResource("WorldBoundaryShape2D_21xkr")
+
+[node name="background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_2mffb")
+volume_db = -5.0
+autoplay = true
+bus = &"Background"
+
+[node name="Stage_cleared_label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.5
+offset_top = -5.0
+offset_right = 346.5
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_x8cy6")
+theme_override_font_sizes/font_size = 100
+text = "STAGE CLEARED !"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("15_mln4t")
+
+[node name="clear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_mln4t")
+
+[editable path="ArcadeLevel"]
+[editable path="Node2D"]

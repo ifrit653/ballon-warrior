@@ -7,8 +7,6 @@ const DEATH_GRAVITY_MULTIPLIER = 0.5  # Slower gravity during death
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var game_manager: Node = $"../Game Manager"
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $AnimatedSprite2D/Sprite2D
 @onready var jump_sfx: AudioStreamPlayer2D = $"jump sfx"
 
 @export var screen_width: float = 1024  # width of your viewport

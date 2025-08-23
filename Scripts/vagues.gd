@@ -1,9 +1,9 @@
 extends Node2D
 
 # Movement parameters
-@export var initial_speed: float = 25.0  # Starting speed (pixels per second)
-@export var acceleration: float = 10.0   # How fast the speed increases
-@export var max_speed: float = 100.0     # Maximum speed limit (optional)
+@export var initial_speed: float = 0.0  # Starting speed (pixels per second)
+@export var acceleration: float = 0.0   # How fast the speed increases
+@export var max_speed: float = 0.0     # Maximum speed limit (optional)
 
 # Internal variables
 var current_speed: float
