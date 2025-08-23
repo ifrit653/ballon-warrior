@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4lmoa4ufcqw0"]
+[gd_scene load_steps=17 format=3 uid="uid://b4lmoa4ufcqw0"]
 
 [ext_resource type="Script" uid="uid://dtr6v2w56jfoq" path="res://Scenes/main menu/main_menu.gd" id="1_fu7sn"]
-[ext_resource type="Texture2D" uid="uid://bqit1n3qt3xgo" path="res://Scenes/main menu/ChatGPT Image Aug 22, 2025, 02_00_14 PM.png" id="2_ahnhv"]
-[ext_resource type="FontFile" uid="uid://d1vliqypamaa4" path="res://Scenes/main menu/pixel dead.ttf" id="3_3nlno"]
+[ext_resource type="FontFile" uid="uid://652xgbpsubn2" path="res://Scenes/main menu/INVASION2000.TTF" id="3_7nb0n"]
 [ext_resource type="AudioStream" uid="uid://bo8hbbgpb5483" path="res://music/Untitled (1).mp3" id="4_3nlno"]
+[ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="4_ahvv6"]
+[ext_resource type="Texture2D" uid="uid://c04bye7fhndom" path="res://Assets/ballon01.png" id="5_qcv5d"]
+[ext_resource type="Texture2D" uid="uid://bflm3nmrhe6hk" path="res://Assets/ballon02.png" id="6_why1s"]
+[ext_resource type="Texture2D" uid="uid://bx3a33cchdv4f" path="res://Assets/ballon03.png" id="7_dt6sc"]
+[ext_resource type="Texture2D" uid="uid://bmqou3u4fg0ui" path="res://Assets/ballon04.png" id="8_kiwke"]
+[ext_resource type="Texture2D" uid="uid://c0hjwi7g1wyh8" path="res://Assets/ballon05.png" id="9_tgx6y"]
+[ext_resource type="Script" uid="uid://c0r8nfai56vkt" path="res://Scripts/random ballons.gd" id="10_m8sgx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nb0n"]
 
@@ -36,6 +42,29 @@ corner_radius_bottom_left = 20
 shadow_color = Color(0.976471, 0, 0.329412, 0.6)
 shadow_size = 2
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_258tb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qcv5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_why1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dt6sc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kiwke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tgx6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 8
@@ -55,11 +84,6 @@ offset_right = 573.0
 offset_bottom = 320.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7nb0n")
 
-[node name="ChatGptImageAug22,2025,020014Pm" type="Sprite2D" parent="Panel"]
-position = Vector2(576.5, 322.5)
-scale = Vector2(0.750651, 0.631836)
-texture = ExtResource("2_ahnhv")
-
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
@@ -67,20 +91,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -272.0
-offset_top = -261.0
-offset_right = 218.0
-offset_bottom = -64.0
+offset_left = -274.0
+offset_top = -215.0
+offset_right = 216.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.40135, 1.40135)
 theme_override_colors/font_color = Color(1, 0.909993, 0.911373, 1)
 theme_override_colors/font_shadow_color = Color(0.899412, 0, 0.189806, 1)
 theme_override_colors/font_outline_color = Color(0.650135, 0.326582, 1, 1)
-theme_override_fonts/font = ExtResource("3_3nlno")
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_7nb0n")
 theme_override_font_sizes/font_size = 100
-text = "BALLOONS 
-WARRIOR"
+text = "BALOM"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Panel"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Panel/CanvasLayer"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+scale = Vector2(29.1738, 16.8639)
+color = Color(0.0351861, 0.000422438, 0.0999469, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -100,6 +135,8 @@ theme_override_constants/separation = 20
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("4_ahvv6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
@@ -110,6 +147,7 @@ text = "Start game"
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ahvv6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
@@ -120,6 +158,7 @@ text = "Settings"
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ahvv6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7vrkn")
@@ -130,6 +169,173 @@ text = "Exit"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3nlno")
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Node" type="Node" parent="CanvasLayer"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(166, 517)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(998, 422)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(458, 199)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(795, 511)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(514, 608)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(840, 245)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(159, 144)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(360, 413)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(672, 188)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1018, 189)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(722, 371)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(529, 339)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(267, 273)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(447, 497)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(651, 541)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(288, 591)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(900, 582)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1150, 406)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_258tb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.113092
+script = ExtResource("10_m8sgx")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
