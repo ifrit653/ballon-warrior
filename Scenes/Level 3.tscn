@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=4 uid="uid://b65re1vw71omg"]
+[gd_scene load_steps=24 format=4 uid="uid://b65re1vw71omg"]
 
-[ext_resource type="Script" uid="uid://d0orl4mcx75aw" path="res://Scripts/level_2.gd" id="1_i1d3a"]
+[ext_resource type="Script" uid="uid://do5xoasefet65" path="res://Scripts/level_3.gd" id="1_108n4"]
 [ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="2_108n4"]
 [ext_resource type="Script" uid="uid://is42pfo5wi23" path="res://Scripts/stars.gd" id="3_0asjg"]
 [ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="4_78ms6"]
@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="10_2vcnc"]
 [ext_resource type="PackedScene" uid="uid://cdqo7wmuqiw75" path="res://Scenes/vagues.tscn" id="11_2rrej"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="12_1v72p"]
+[ext_resource type="Script" uid="uid://cy22p2pvam7da" path="res://Scripts/vagues2.gd" id="12_108n4"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="13_8ud34"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_lfqvk"]
-[ext_resource type="Script" uid="uid://dcggy6ahg2gte" path="res://Scripts/game over.gd" id="15_04ya2"]
 [ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_4cadj"]
+[ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="17_0asjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]
 atlas = ExtResource("4_78ms6")
@@ -56,7 +57,7 @@ animations = [{
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
 
 [node name="Game" type="Node"]
-script = ExtResource("1_i1d3a")
+script = ExtResource("1_108n4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -289,6 +290,10 @@ vertical_alignment = 1
 z_index = 3
 position = Vector2(-164, 692)
 scale = Vector2(2.95049, 2.80738)
+script = ExtResource("12_108n4")
+initial_speed = 5.0
+acceleration = 5.0
+max_speed = 100.0
 
 [node name="killzone" parent="Vagues" instance=ExtResource("12_1v72p")]
 position = Vector2(55.584, -308.473)
@@ -320,10 +325,23 @@ theme_override_font_sizes/font_size = 100
 text = "STAGE CLEARED !"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("15_04ya2")
 
 [node name="clear" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_4cadj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 736.0
+offset_top = 372.0
+offset_right = 972.0
+offset_bottom = 441.0
+scale = Vector2(1.41284, 1.64102)
+theme_override_colors/font_color = Color(0.191099, 0.0368663, 0.494399, 1)
+theme_override_fonts/font = ExtResource("17_0asjg")
+theme_override_font_sizes/font_size = 30
+text = "don't forget 
+even one balloon"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="ArcadeLevel"]
 [editable path="Node2D"]

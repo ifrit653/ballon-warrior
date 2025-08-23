@@ -1,5 +1,5 @@
 extends RigidBody2D
-@onready var player: CharacterBody2D = $"../Node2D"
+@onready var player = get_node("%Player")
 
 const SPEED := 150.0
 
@@ -95,7 +95,7 @@ func choose_direction() -> void:
 	
 	timer.start()
 
-@onready var game_manager: Node = $"../Game Manager"
+@onready var game_manager = get_node("%GameManager")
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 

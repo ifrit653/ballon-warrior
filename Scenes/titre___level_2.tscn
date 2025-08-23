@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvmk03kkhijv2"]
+[gd_scene load_steps=5 format=3 uid="uid://07mdpwti8po8"]
 
-[ext_resource type="Script" uid="uid://bx6807caxixo7" path="res://Scripts/titre___level_4.gd" id="1_fenpv"]
+[ext_resource type="Script" uid="uid://ghv0o4qpk15h" path="res://Scripts/titre___level_2.gd" id="1_5kp1t"]
 [ext_resource type="FontFile" uid="uid://sqiysueq38uf" path="res://Assets/Vyaz Pixel.ttf" id="2_e54to"]
 [ext_resource type="Texture2D" uid="uid://c04bye7fhndom" path="res://Assets/ballon01.png" id="3_l0upr"]
 [ext_resource type="AudioStream" uid="uid://dvxvhuds4eku2" path="res://Assets/Tiles_pack/JDSherbert - Pixel UI SFX Pack - Cursor 3 (Square).mp3" id="4_3ys2p"]
 
-[node name="Titre _ Level 3" type="Node2D"]
-script = ExtResource("1_fenpv")
+[node name="Titre _ Level 2" type="Node2D"]
+script = ExtResource("1_5kp1t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -33,7 +33,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_e54to")
 theme_override_font_sizes/font_size = 100
-text = "Level 4"
+text = "Level 2"
 
 [node name="Ballon01" type="Sprite2D" parent="Label"]
 position = Vector2(289.118, 56.2614)

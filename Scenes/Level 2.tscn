@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="13_1wcc3"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="14_2mffb"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_x8cy6"]
-[ext_resource type="Script" uid="uid://dcggy6ahg2gte" path="res://Scripts/game over.gd" id="15_mln4t"]
+[ext_resource type="Script" uid="uid://brg1uq74xm2yq" path="res://Scripts/killzone.gd" id="15_mln4t"]
 [ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_mln4t"]
 [ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="17_efke1"]
 

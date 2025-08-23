@@ -9,7 +9,7 @@ extends Node
 @onready var game_manager: Node = $"Game Manager"
 
 # Game variables
-var target_score: float = 300
+var target_score: float = 400
 var stage_cleared: bool
 
 # Settings
