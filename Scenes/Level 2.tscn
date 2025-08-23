@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://c7fvwdvpsd16i"]
+[gd_scene load_steps=24 format=4 uid="uid://c7fvwdvpsd16i"]
 
 [ext_resource type="Script" uid="uid://d0orl4mcx75aw" path="res://Scripts/level_2.gd" id="1_nesbo"]
 [ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="1_r6dy4"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_x8cy6"]
 [ext_resource type="Script" uid="uid://dcggy6ahg2gte" path="res://Scripts/game over.gd" id="15_mln4t"]
 [ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_mln4t"]
+[ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="17_efke1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]
 atlas = ExtResource("3_mln4t")
@@ -299,7 +300,6 @@ shape = SubResource("WorldBoundaryShape2D_21xkr")
 stream = ExtResource("14_2mffb")
 volume_db = -5.0
 autoplay = true
-bus = &"Background"
 
 [node name="Stage_cleared_label" type="Label" parent="."]
 anchors_preset = 8
@@ -322,6 +322,28 @@ script = ExtResource("15_mln4t")
 
 [node name="clear" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_mln4t")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 710.0
+offset_top = 406.0
+offset_right = 928.0
+offset_bottom = 448.0
+scale = Vector2(1.41284, 1.64102)
+theme_override_colors/font_color = Color(0.191099, 0.0368663, 0.494399, 1)
+theme_override_fonts/font = ExtResource("17_efke1")
+theme_override_font_sizes/font_size = 30
+text = "Space for jump"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 369.0
+offset_top = 8.0
+offset_right = 587.0
+offset_bottom = 50.0
+scale = Vector2(1.41284, 1.64102)
+theme_override_colors/font_color = Color(0.9917, 0.235388, 0.572084, 1)
+theme_override_fonts/font = ExtResource("17_efke1")
+theme_override_font_sizes/font_size = 30
+text = "Pop the balloons"
 
 [editable path="ArcadeLevel"]
 [editable path="Node2D"]
