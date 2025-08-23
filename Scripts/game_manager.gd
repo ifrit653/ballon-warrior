@@ -6,9 +6,9 @@ var score = 0
 
 func add_point():
 	score += 100
-	print(score)
 	label.text = "Score :" + str(score)
 	score_up.play()
+	return score
 
 # Add these variables to your Game Manager
 var player_health = 2  # Starting health

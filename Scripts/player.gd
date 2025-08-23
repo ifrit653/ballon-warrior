@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
+class_name Player
+
 const SPEED = 200.0
 const JUMP_VELOCITY = -600.0
 const DEATH_FALL_SPEED = 300.0  # Initial fall speed
 const DEATH_GRAVITY_MULTIPLIER = 0.5  # Slower gravity during death
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var game_manager: Node = $"../Game Manager"
+#@onready var game_manager: Node = $"../Game Manager"
+@onready var game_manager = get_node("%GameManager")
 @onready var jump_sfx: AudioStreamPlayer2D = $"jump sfx"
 @onready var node_2d: CharacterBody2D = $"."
 

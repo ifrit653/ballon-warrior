@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://baw7yy7hwc7yq"]
+
+[ext_resource type="Texture2D" uid="uid://dfs8rs4e5nhj5" path="res://Assets/trophy-sprite.png" id="1_4k5j2"]
+[ext_resource type="Script" uid="uid://8fpoguq517gm" path="res://Scripts/trophy.gd" id="1_kn7si"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kn7si"]
+radius = 69.0
+height = 206.0
+
+[node name="trophy" type="Area2D"]
+script = ExtResource("1_kn7si")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 8)
+shape = SubResource("CapsuleShape2D_kn7si")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+scale = Vector2(0.36175, 0.36175)
+texture = ExtResource("1_4k5j2")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_trophy_touched"]

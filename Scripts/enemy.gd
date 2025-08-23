@@ -1,8 +1,9 @@
 extends RigidBody2D
-@onready var player: CharacterBody2D = $"../../Node2D"
+@onready var player = get_node("%Player")
 
 const SPEED := 150.0
 
+@onready var game_manager = get_node("%GameManager")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_right: RayCast2D = $RayCast2Dhighreight
 @onready var ray_left: RayCast2D = $RayCast2Dhighleft
@@ -95,7 +96,6 @@ func choose_direction() -> void:
 	
 	timer.start()
 
-@onready var game_manager: Node = %"Game Manager"
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 
@@ -105,7 +105,7 @@ const killSpot := 50.0
 var can_take_damage: bool = true
 var damage_cooldown: float = 1.0  # 1 second cooldown
 
-@onready var animated_sprite_2dplayer: AnimatedSprite2D = $"../../Node2D"/AnimatedSprite2D
+@onready var animated_sprite_2dplayer = get_node("%Player")
 
 func flash_white():
 	# Create a tween for smooth color transition
