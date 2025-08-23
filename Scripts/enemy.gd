@@ -99,11 +99,21 @@ func choose_direction() -> void:
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 
-const killSpot := 60.0
+const killSpot := 50.0
 
 # Add these variables at the top of your script
 var can_take_damage: bool = true
 var damage_cooldown: float = 1.0  # 1 second cooldown
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../Node2D"/AnimatedSprite2D
+
+func flash_white():
+	# Create a tween for smooth color transition
+	var tween = create_tween()
+	
+	# Flash white briefly
+	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE * 2, 0.1)
+	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE, 0.1)
 
 func _on_area_2d_body_entered(body):
 	if (body == player):
@@ -120,6 +130,7 @@ func _on_area_2d_body_entered(body):
 			if can_take_damage:
 				print("Decrease player health")
 				hit_damage.play()
+				player.flash_white()  # Add white flash effect
 				health_decrease_count += 1
 				
 				# Check if health decreased twice - immediate death
@@ -138,6 +149,7 @@ func _on_area_2d_body_entered(body):
 			if can_take_damage:
 				print("Decrease player health")
 				hit_damage.play()
+				player.flash_white()  # Add white flash effect
 				health_decrease_count += 1
 				
 				# Check if health decreased twice - immediate death

@@ -1,15 +1,24 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -600.0
 @onready var jump_sfx: AudioStreamPlayer2D = $"jump sfx"
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	# Play fly animation when not on floor
+		if animated_sprite_2d.animation != "fly":
+			animated_sprite_2d.play("fly")
+	else:
+		# Play idle animation when on floor
+		if animated_sprite_2d.animation != "idle":
+			animated_sprite_2d.play("idle")
 
 	# Handle jump/flight - can jump from midair
 	if Input.is_action_just_pressed("ui_accept"):
@@ -20,9 +29,9 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction > 0:
-		sprite_2d.flip_h = true
+		animated_sprite_2d.flip_h = false
 	elif direction < 0:
-		sprite_2d.flip_h = false
+		animated_sprite_2d.flip_h = true
 	
 	if direction != 0:
 		velocity.x = direction * SPEED
@@ -40,3 +49,11 @@ func _process(delta):
 		position.x = 0
 	elif position.x < 0:
 		position.x = screen_width
+
+func flash_white():
+	# Create a tween for smooth color transition
+	var tween = create_tween()
+	
+	# Flash white briefly
+	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE * 2, 0.1)
+	tween.tween_property(animated_sprite_2d, "modulate", Color.WHITE, 0.1)
