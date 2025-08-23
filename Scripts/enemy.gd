@@ -117,7 +117,7 @@ func flash_white():
 
 func _on_area_2d_body_entered(body):
 	if (body == player):
-		var y_delta = position.y - body.position.y
+		y_delta = position.y - body.position.y
 		
 		if (y_delta > killSpot):
 			print("Destroy enemy")

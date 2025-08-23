@@ -99,7 +99,7 @@ func check_player_distance():
 		timer.start()  # Resume random direction changes
 		print("Enemy lost player, returning to patrol")
 
-func chase_player(delta: float):
+func chase_player(delta : float):
 	if not player:
 		return
 		

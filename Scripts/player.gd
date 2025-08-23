@@ -7,9 +7,8 @@ const DEATH_GRAVITY_MULTIPLIER = 0.5  # Slower gravity during death
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var game_manager: Node = $"../Game Manager"
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $AnimatedSprite2D/Sprite2D
 @onready var jump_sfx: AudioStreamPlayer2D = $"jump sfx"
+@onready var node_2d: CharacterBody2D = $"."
 
 @export var screen_width: float = 1024  # width of your viewport
 @export var screen_height: float = 600  # height of your viewport
@@ -135,7 +134,7 @@ func restart_game():
 	# if game_manager.has_method("restart_game"):
 	#     game_manager.restart_game()
 
-func _process(delta):
+func _process(delte : float):
 	# Only do screen wrapping when alive
 	if not is_dead:
 		# Horizontal wrap
