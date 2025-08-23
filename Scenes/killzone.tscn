@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7paumlswgor8"]
+[gd_scene load_steps=4 format=3 uid="uid://c7paumlswgor8"]
 
 [ext_resource type="Script" uid="uid://brg1uq74xm2yq" path="res://Scripts/killzone.gd" id="1_jvagm"]
+[ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="2_ca4vh"]
+[ext_resource type="Script" uid="uid://dcggy6ahg2gte" path="res://Scripts/game over.gd" id="3_on6up"]
 
 [node name="killzone" type="Area2D"]
 script = ExtResource("1_jvagm")
@@ -8,6 +10,25 @@ script = ExtResource("1_jvagm")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 269.0
+offset_top = 944.0
+offset_right = 799.0
+offset_bottom = 1044.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ca4vh")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_on6up")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
