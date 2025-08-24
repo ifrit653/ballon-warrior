@@ -1,0 +1,266 @@
+[gd_scene load_steps=12 format=3 uid="uid://prpf7t4j0668"]
+
+[ext_resource type="Script" uid="uid://bswhyetm548fg" path="res://Scripts/ending_screen.gd" id="1_mla4u"]
+[ext_resource type="FontFile" uid="uid://sqiysueq38uf" path="res://Assets/Fonts/Vyaz Pixel.ttf" id="2_e410p"]
+[ext_resource type="AudioStream" uid="uid://bseqx5gxr37y4" path="res://music/Untitled (5).mp3" id="3_e410p"]
+[ext_resource type="Texture2D" uid="uid://c04bye7fhndom" path="res://Assets/Balloons/ballon01.png" id="3_kwxfj"]
+[ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="4_kwxfj"]
+[ext_resource type="Texture2D" uid="uid://bflm3nmrhe6hk" path="res://Assets/Balloons/ballon02.png" id="6_ijf5k"]
+[ext_resource type="Texture2D" uid="uid://bx3a33cchdv4f" path="res://Assets/Balloons/ballon03.png" id="7_nmnc2"]
+[ext_resource type="Texture2D" uid="uid://bmqou3u4fg0ui" path="res://Assets/Balloons/ballon04.png" id="8_0vuqh"]
+[ext_resource type="Texture2D" uid="uid://c0hjwi7g1wyh8" path="res://Assets/Balloons/ballon05.png" id="9_xik8g"]
+[ext_resource type="Script" uid="uid://5fsw5vudg0qb" path="res://Scripts/random ballons_final.gd" id="10_ijf5k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhhvx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kwxfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ijf5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nmnc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0vuqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xik8g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Titre _ Level 5" type="Node2D"]
+script = ExtResource("1_mla4u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(29.5382, 16.7037)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = 107.0
+offset_right = 935.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.13654, 1.01727)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_e410p")
+theme_override_font_sizes/font_size = 100
+text = "A Game by
+Team san pellegrino"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_e410p")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 342.0
+offset_right = 979.0
+offset_bottom = 547.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.494346, 0.522826)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_e410p")
+theme_override_font_sizes/font_size = 100
+text = "RAKOTOARISININA 
+Miarotiana"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 615.0
+offset_top = 335.0
+offset_right = 1506.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.494346, 0.522826)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_e410p")
+theme_override_font_sizes/font_size = 100
+text = "ANDRIAMAMPIONINA
+TSILAVINA MARIUS FIGO"
+horizontal_alignment = 1
+
+[node name="Node2D" parent="." instance=ExtResource("4_kwxfj")]
+position = Vector2(552, 555)
+
+[node name="Label4" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 580.0
+offset_right = 912.0
+offset_bottom = 785.0
+grow_vertical = 0
+scale = Vector2(0.318056, 0.292973)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_e410p")
+theme_override_font_sizes/font_size = 100
+text = "ESC to quit
+ENTER TO REPLAY"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Node" type="Node" parent="CanvasLayer2"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(166, 517)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(998, 422)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(458, 199)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(795, 511)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(514, 608)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(840, 245)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(360, 413)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(672, 188)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(159, 144)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(1018, 189)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(722, 371)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(529, 339)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(267, 273)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(447, 497)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(651, 541)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(288, 591)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(900, 582)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="CanvasLayer2/Node"]
+position = Vector2(1150, 406)
+scale = Vector2(5.06736, 4.71097)
+sprite_frames = SubResource("SpriteFrames_rhhvx")
+autoplay = "default"
+script = ExtResource("10_ijf5k")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjbf1qo7dxw17"]
 
 [ext_resource type="Script" uid="uid://caboeph67c3iv" path="res://Scripts/control.gd" id="1_sjmnu"]
-[ext_resource type="FontFile" uid="uid://sqiysueq38uf" path="res://Assets/Vyaz Pixel.ttf" id="2_cgmvo"]
+[ext_resource type="FontFile" uid="uid://sqiysueq38uf" path="res://Assets/Fonts/Vyaz Pixel.ttf" id="2_cgmvo"]
 
 [node name="FloatingLabel" type="Control"]
 layout_mode = 3

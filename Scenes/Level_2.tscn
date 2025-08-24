@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=4 uid="uid://b65re1vw71omg"]
 
-[ext_resource type="Script" uid="uid://do5xoasefet65" path="res://Scripts/level_.gd" id="1_108n4"]
-[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="2_108n4"]
+[ext_resource type="Script" uid="uid://do5xoasefet65" path="res://Scripts/level_2.gd" id="1_108n4"]
+[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/Images/purple sky.jpg" id="2_108n4"]
 [ext_resource type="Script" uid="uid://is42pfo5wi23" path="res://Scripts/stars.gd" id="3_0asjg"]
-[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="4_78ms6"]
+[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/Images/S001_nyknck.png" id="4_78ms6"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="5_yf7w6"]
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="6_6ska1"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="7_uvcn0"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://cy22p2pvam7da" path="res://Scripts/vagues2.gd" id="12_108n4"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="13_8ud34"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_lfqvk"]
-[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_4cadj"]
+[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://music/completetask_0.mp3" id="16_4cadj"]
 [ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="17_0asjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]

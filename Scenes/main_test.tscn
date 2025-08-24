@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=4 uid="uid://c4talvvxr188x"]
 
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="1_iflb3"]
-[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="1_yh4u3"]
+[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/Images/purple sky.jpg" id="1_yh4u3"]
 [ext_resource type="Script" uid="uid://is42pfo5wi23" path="res://Scripts/stars.gd" id="2_dpebp"]
-[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="2_mx8ng"]
+[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/Images/S001_nyknck.png" id="2_mx8ng"]
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="2_yh4u3"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="3_mx8ng"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="5_0xk2i"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cdqo7wmuqiw75" path="res://Scenes/vagues.tscn" id="14_hinp3"]
 [ext_resource type="Script" uid="uid://d3pv5n7w8khuj" path="res://Scripts/area_2d.gd" id="15_lfr2x"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="16_mso22"]
-[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="17_yges3"]
+[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://music/completetask_0.mp3" id="17_yges3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]
 atlas = ExtResource("2_mx8ng")

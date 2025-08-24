@@ -1,0 +1,226 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdp7ftsaju11u"]
+
+[ext_resource type="Texture2D" uid="uid://cieeleufc2tjg" path="res://Assets/nuage.png" id="1_b3oxr"]
+[ext_resource type="AudioStream" uid="uid://d22qkx65xb203" path="res://music/electricity-106510.mp3" id="3_qaedo"]
+
+[sub_resource type="GDScript" id="GDScript_fcyt7"]
+script/source = "extends Sprite2D
+
+# Floating Cloud Animation Script
+# Attach this to a Sprite2D node with a cloud texture
+
+# Floating motion properties
+var float_amplitude_y = 30.0  # Vertical floating range
+var float_speed_y = 1.5  # Vertical floating speed
+var float_amplitude_x = 15.0  # Horizontal drift range
+var float_speed_x = 0.8  # Horizontal drift speed
+
+# Rotation properties
+var rotation_amplitude = 5.0  # Max rotation in degrees
+var rotation_speed = 0.5  # Rotation speed
+
+# Scale breathing effect
+var scale_amplitude = 0.1  # How much the cloud grows/shrinks
+var scale_speed = 2.0  # Breathing speed
+var base_scale = Vector2.ONE
+
+# Wind effect
+var wind_strength = 0.0  # Overall wind force
+var wind_direction = Vector2.RIGHT
+var wind_turbulence = 5.0  # Random wind variation (reduced default)
+
+# Lightning effect
+var lightning_interval = 10.0  # Time between lightning strikes
+var lightning_color = Color.DARK_MAGENTA  # Purple lightning color
+var lightning_enabled = true
+var last_lightning_time = 0.0
+var lightning_tween: Tween
+
+@onready var lightning_sound: AudioStreamPlayer = $\"../LightningSound\"
+
+# Internal variables
+var time = 0.0
+var base_position = Vector2.ZERO
+var noise = FastNoiseLite.new()
+var original_modulate = Color.WHITE
+
+func _ready():
+	# Store the initial position and scale
+	base_position = position
+	base_scale = scale
+	original_modulate = modulate
+	
+	# Setup noise for natural movement
+	noise.seed = randi()
+	noise.frequency = 0.5
+	
+	# If no position set, center the cloud
+	if position == Vector2.ZERO:
+		var viewport_size = get_viewport().get_visible_rect().size
+		base_position = Vector2(viewport_size.x / 2, viewport_size.y / 3)
+		position = base_position
+
+func _process(delta):
+	time += delta
+	animate_float(delta)
+	handle_lightning()
+
+func animate_float(delta):
+	# Primary floating motion (sine waves)
+	var float_y = sin(time * float_speed_y) * float_amplitude_y
+	var float_x = sin(time * float_speed_x) * float_amplitude_x
+	
+	# Add noise for more natural movement (much slower)
+	var noise_x = noise.get_noise_1d(time * 0.5) * wind_turbulence
+	var noise_y = noise.get_noise_1d(time * 0.3 + 1000) * 5
+	
+	# Apply wind effect (much slower)
+	var wind_offset = wind_direction * wind_strength * time * 2
+	
+	# Combine all movements
+	position = base_position + Vector2(float_x + noise_x, float_y + noise_y) + wind_offset
+	
+	# Gentle rotation
+	rotation_degrees = sin(time * rotation_speed) * rotation_amplitude
+	
+	# Breathing scale effect
+	var scale_factor = 1.0 + sin(time * scale_speed) * scale_amplitude
+	scale = base_scale * scale_factor
+	
+	# Optional: Fade in and out for dreamy effect (only if no lightning active)
+	if not is_lightning_active():
+		modulate.a = (original_modulate.a * 0.8) + sin(time * 0.3) * 0.2
+
+func handle_lightning():
+	\"\"\"Handle lightning effects every 10 seconds\"\"\"
+	if not lightning_enabled:
+		return
+	
+	if time - last_lightning_time >= lightning_interval:
+		trigger_lightning()
+		last_lightning_time = time
+
+func trigger_lightning():
+	\"\"\"Create the double lightning flash effect with sound\"\"\"
+	# Kill existing tween if running
+	if lightning_tween:
+		lightning_tween.kill()
+	
+	# Play lightning sound at the start of the effect
+	if lightning_sound:
+		lightning_sound.play()
+	
+	lightning_tween = create_tween()
+	
+	# First flash
+	lightning_tween.tween_method(set_lightning_modulate, 0.0, 1.0, 0.05)  # Flash to purple quickly
+	lightning_tween.tween_method(set_lightning_modulate, 1.0, 0.0, 0.1)   # Fade back
+	
+	# Brief pause using callback
+	lightning_tween.tween_callback(func(): pass).set_delay(0.1)
+	
+	# Second flash (slightly longer)
+	lightning_tween.tween_method(set_lightning_modulate, 0.0, 1.0, 0.03)  # Quick flash
+	lightning_tween.tween_method(set_lightning_modulate, 1.0, 0.0, 0.15)  # Longer fade back
+
+func set_lightning_modulate(intensity: float):
+	\"\"\"Blend between normal color and lightning color\"\"\"
+	modulate = original_modulate.lerp(lightning_color, intensity)
+
+func is_lightning_active() -> bool:
+	\"\"\"Check if lightning animation is currently playing\"\"\"
+	return lightning_tween != null and lightning_tween.is_valid()
+
+# Lightning control methods
+func enable_lightning(enabled: bool = true):
+	\"\"\"Enable or disable lightning effects\"\"\"
+	lightning_enabled = enabled
+	if not enabled:
+		modulate = original_modulate
+
+func set_lightning_properties(interval: float, color: Color = Color.DARK_MAGENTA):
+	\"\"\"Customize lightning timing and color\"\"\"
+	lightning_interval = interval
+	lightning_color = color
+
+func trigger_manual_lightning():
+	\"\"\"Manually trigger a lightning effect\"\"\"
+	trigger_lightning()
+# Public methods to control the floating
+func set_floating_properties(amp_y: float, speed_y: float, amp_x: float = 0.0, speed_x: float = 0.0):
+	\"\"\"Set the floating motion parameters\"\"\"
+	float_amplitude_y = amp_y
+	float_speed_y = speed_y
+	if amp_x > 0:
+		float_amplitude_x = amp_x
+	if speed_x > 0:
+		float_speed_x = speed_x
+
+func set_wind(strength: float, direction: Vector2 = Vector2.RIGHT):
+	\"\"\"Apply wind effect to the cloud\"\"\"
+	wind_strength = strength
+	wind_direction = direction.normalized()
+
+func set_rotation_float(amplitude: float, speed: float):
+	\"\"\"Set rotation floating parameters\"\"\"
+	rotation_amplitude = amplitude
+	rotation_speed = speed
+
+func set_breathing_effect(amplitude: float, speed: float):
+	\"\"\"Set scale breathing effect\"\"\"
+	scale_amplitude = clamp(amplitude, 0.0, 0.5)
+	scale_speed = speed
+
+func reset_position():
+	\"\"\"Reset cloud to its base position\"\"\"
+	base_position = position
+	time = 0.0
+
+func move_to(new_position: Vector2, duration: float = 2.0):
+	\"\"\"Smoothly move the cloud's base position\"\"\"
+	var tween = create_tween()
+	tween.tween_property(self, \"base_position\", new_position, duration)
+
+func set_turbulence(strength: float):
+	\"\"\"Set the natural turbulence/noise effect\"\"\"
+	wind_turbulence = strength
+
+# Preset configurations
+func set_gentle_float():
+	\"\"\"Preset: Gentle, slow floating\"\"\"
+	set_floating_properties(20.0, 1.0, 10.0, 0.6)
+	set_rotation_float(3.0, 0.3)
+	set_breathing_effect(0.05, 1.5)
+
+func set_active_float():
+	\"\"\"Preset: More active floating motion\"\"\"
+	set_floating_properties(50.0, 2.0, 30.0, 1.2)
+	set_rotation_float(8.0, 0.8)
+	set_breathing_effect(0.15, 2.5)
+
+func set_dreamy_float():
+	\"\"\"Preset: Slow, dreamy floating\"\"\"
+	set_floating_properties(40.0, 0.8, 20.0, 0.5)
+	set_rotation_float(2.0, 0.2)
+	set_breathing_effect(0.08, 1.0)
+	set_turbulence(2.0)  # Much gentler turbulence
+
+# Example usage in another script:
+# $CloudSprite.set_gentle_float()
+# $CloudSprite.set_wind(0.5, Vector2.LEFT)
+# $CloudSprite.move_to(Vector2(400, 200), 3.0)
+# $CloudSprite.set_lightning_properties(5.0, Color.PURPLE)  # Lightning every 5 seconds
+# $CloudSprite.trigger_manual_lightning()  # Manual lightning strike
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.967741, 0.684134, 0.753962, 1)
+z_index = 3
+scale = Vector2(0.199855, 0.244834)
+texture = ExtResource("1_b3oxr")
+script = SubResource("GDScript_fcyt7")
+
+[node name="LightningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qaedo")

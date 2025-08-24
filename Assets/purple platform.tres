@@ -1,6 +1,0 @@
-[gd_resource type="TileSet" format=3 uid="uid://cfq83irs210i4"]
-
-[resource]
-resource_local_to_scene = true
-physics_layer_0/collision_layer = 1
-terrain_set_0/mode = 0

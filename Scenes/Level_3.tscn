@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=4 uid="uid://bgscvast5n3ka"]
 
 [ext_resource type="Script" uid="uid://cm8apsh0oilhx" path="res://Scripts/level_4.gd" id="1_84lx4"]
-[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="2_84lx4"]
+[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/Images/purple sky.jpg" id="2_84lx4"]
 [ext_resource type="Script" uid="uid://is42pfo5wi23" path="res://Scripts/stars.gd" id="3_2hd28"]
-[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="4_0tq2s"]
+[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/Images/S001_nyknck.png" id="4_0tq2s"]
 [ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="5_46ajd"]
 [ext_resource type="PackedScene" uid="uid://c0rippb2kf5gm" path="res://Scenes/character_body_2d.tscn" id="6_e8j1q"]
 [ext_resource type="Script" uid="uid://b8st6vfa6fu8f" path="res://Scripts/camera_2d.gd" id="7_21pwi"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="12_l32eu"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="13_n5e6y"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_ac03g"]
-[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://Assets/completetask_0.mp3" id="16_34mbs"]
+[ext_resource type="AudioStream" uid="uid://vg0nctnklq72" path="res://music/completetask_0.mp3" id="16_34mbs"]
 [ext_resource type="Script" uid="uid://d2oq4smtgg2s3" path="res://Scenes/game_clear.gd" id="17_2hd28"]
 [ext_resource type="FontFile" uid="uid://diy3tb2dqcd7x" path="res://Scenes/main menu/Pixelora - Personal Use.ttf" id="18_a1204"]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://bbw5n435b4tgq"]
 
 [ext_resource type="Script" uid="uid://ctmpoaw08c7ks" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://dhareirmp7qd3" path="res://Assets/mob idle01.png" id="2_1dp5w"]
+[ext_resource type="Texture2D" uid="uid://dhareirmp7qd3" path="res://Assets/MobSprite/mob idle01.png" id="2_1dp5w"]
 [ext_resource type="AudioStream" uid="uid://calp1u5mqb53l" path="res://music/Hit damage 1.wav" id="3_0830c"]
 [ext_resource type="AudioStream" uid="uid://ros2orvsyyjo" path="res://music/Balloon start riding 2.wav" id="3_afpow"]
-[ext_resource type="Texture2D" uid="uid://bfqpt80v8cqhh" path="res://Assets/mob idle02.png" id="3_auwsv"]
-[ext_resource type="Texture2D" uid="uid://btxaiv5jh422l" path="res://Assets/mob idle03.png" id="4_8uf12"]
+[ext_resource type="Texture2D" uid="uid://bfqpt80v8cqhh" path="res://Assets/MobSprite/mob idle02.png" id="3_auwsv"]
+[ext_resource type="Texture2D" uid="uid://btxaiv5jh422l" path="res://Assets/MobSprite/mob idle03.png" id="4_8uf12"]
 [ext_resource type="AudioStream" uid="uid://7qbua6mj6qnx" path="res://music/Balloon-ride-1.mp3" id="4_287tu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0830c"]

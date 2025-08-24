@@ -56,12 +56,12 @@ func handle_normal_physics(delta: float) -> void:
 			animated_sprite_2d.play("1up_fly")
 	
 	# Handle jump/flight - can jump from midair
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
 		jump_sfx.play()
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left", "right")
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
@@ -142,6 +142,9 @@ func _process(delta):
 			position.x = 0
 		elif position.x < 0:
 			position.x = screen_width
+	
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 func flash_white():
 	# Only flash if not dead

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c74l86xgr45ws"]
+
+[ext_resource type="Script" uid="uid://4fi16voq2mn5" path="res://Scripts/ball.gd" id="1_q2iea"]
+[ext_resource type="Texture2D" uid="uid://bdunjl2118p5f" path="res://Assets/EnergyBall.png" id="2_a4pmj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyutt"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1.19209e-07, 0)
+scale = Vector2(0.199855, 0.244834)
+script = ExtResource("1_q2iea")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D"]
+self_modulate = Color(0.979008, 0.42204, 0.411024, 1)
+position = Vector2(-5.00362, 371.68)
+scale = Vector2(2.45926, 2.5303)
+texture = ExtResource("2_a4pmj")
+region_enabled = true
+region_rect = Rect2(0, 0, 115.83, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-5.00362, 371.68)
+scale = Vector2(9.99752, 4.99111)
+shape = SubResource("CircleShape2D_qyutt")
