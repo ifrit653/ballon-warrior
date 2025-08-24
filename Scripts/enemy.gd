@@ -1,5 +1,4 @@
 extends RigidBody2D
-@onready var player = get_node("%Player")
 
 const SPEED := 150.0
 
@@ -12,6 +11,8 @@ const SPEED := 150.0
 @onready var mob_sfx: AudioStreamPlayer2D = $mob_sfx
 @onready var hit_damage: AudioStreamPlayer = $AnimatedSprite2D/hit_damage
 @export var floating_label_scene = preload("res://Scenes/control.tscn")
+@onready var game_manager: Node = %"GM"
+@onready var player: Player = %"Player" 
 
 var spawn_position: Vector2
 var direction: Vector2 = Vector2.RIGHT
@@ -95,7 +96,6 @@ func choose_direction() -> void:
 	
 	timer.start()
 
-@onready var game_manager = get_node("%GameManager")
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 
@@ -105,7 +105,7 @@ const killSpot := 50.0
 var can_take_damage: bool = true
 var damage_cooldown: float = 1.0  # 1 second cooldown
 
-@onready var animated_sprite_2dplayer: AnimatedSprite2D = $"../Node2D"/AnimatedSprite2D
+@onready var animated_sprite_2dplayer: AnimatedSprite2D = $"%Player/AnimatedSprite2D"
 
 func flash_white():
 	# Create a tween for smooth color transition

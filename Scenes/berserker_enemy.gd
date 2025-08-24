@@ -1,7 +1,5 @@
 extends RigidBody2D
 
-@onready var player = get_node("%Player")
-
 const SPEED := 150.0
 const CHASE_SPEED := 200.0  # Faster when chasing
 
@@ -14,6 +12,8 @@ const CHASE_SPEED := 200.0  # Faster when chasing
 @onready var mob_sfx: AudioStreamPlayer2D = $mob_sfx
 @onready var hit_damage: AudioStreamPlayer = $AnimatedSprite2D/hit_damage
 @export var floating_label_scene = preload("res://Scenes/control.tscn")
+@onready var game_manager: Node = %"GM"
+@onready var player: Player = %"Player" 
 
 var spawn_position: Vector2
 var direction: Vector2 = Vector2.RIGHT
@@ -160,7 +160,6 @@ func choose_direction() -> void:
 		timer.start()
 
 # Rest of your original script remains the same...
-@onready var game_manager = get_node("%GameManager")
 var y_delta
 var health_decrease_count = 0  # Track how many times health decreased
 

@@ -20,11 +20,13 @@ func _ready():
 		stage_cleared_label.visible = false
 	if stage_cleared_label_2:
 		stage_cleared_label_2.visible = false
-func _on_body_entered(body: CharacterBody2D):
-	# Check if the body is a CharacterBody2D and stage hasn't been cleared yet
-	if body is CharacterBody2D and not stage_cleared:
-		print("CharacterBody2D entered area - triggering stage clear!")
-		trigger_stage_clear()
+
+func _on_body_entered(body: CharacterBody2D) -> void:
+	if stage_cleared:
+		return # Prevent multiple triggers
+		
+	print("CharacterBody2D entered area - triggering stage clear!")
+	trigger_stage_clear()
 
 func trigger_stage_clear():
 	stage_cleared = true

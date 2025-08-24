@@ -10,19 +10,20 @@ extends Area2D
 # Track if stage has been cleared to prevent multiple triggers
 var stage_cleared: bool 
 
-func _ready():
-	# Connect the body_entered signal to our function
-	body_entered.connect(_on_body_entered)
-	
+func _ready() -> void:
 	# Hide stage cleared label initially
 	if stage_cleared_label:
 		stage_cleared_label.visible = false
 
-func _on_body_entered(body: CharacterBody2D):
-	# Check if the body is a CharacterBody2D and stage hasn't been cleared yet
-	if body is CharacterBody2D and not stage_cleared:
-		print("CharacterBody2D entered area - triggering stage clear!")
-		trigger_stage_clear()
+	# Connect the signal properly
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: CharacterBody2D) -> void:
+	if stage_cleared:
+		return # Prevent multiple triggers
+		
+	print("CharacterBody2D entered area - triggering stage clear!")
+	trigger_stage_clear()
 
 func trigger_stage_clear():
 	stage_cleared = true
@@ -46,4 +47,4 @@ func trigger_stage_clear():
 
 func load_next_level():
 	# Load level 3 (same as your original script)
-	get_tree().change_scene_to_file("res://Scenes/titre___level_4.tscn")
+	get_tree().change_scene_to_file("res://Scenes/titre_level_4.tscn")

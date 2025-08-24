@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/titre___level_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/titre_level_1.tscn")
 
 func _on_settings_pressed() -> void:
 	print("Settings pressed")

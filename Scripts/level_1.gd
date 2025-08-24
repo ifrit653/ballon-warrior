@@ -6,10 +6,10 @@ extends Node
 @onready var clear: AudioStreamPlayer = $clear
 
 # Game Manager Reference
-@onready var game_manager: Node = $"Game Manager"
+@onready var game_manager: Node = $"GM"
 
 # Game variables
-var target_score: float = 400
+var target_score: float = 300
 var stage_cleared: bool
 
 # Settings
@@ -53,4 +53,4 @@ func trigger_stage_clear():
 
 func load_next_level():
 	# Load level 3
-	get_tree().change_scene_to_file("res://Scenes/titre___level_3.tscn")
+	get_tree().change_scene_to_file("res://Scenes/titre_level_2.tscn")
