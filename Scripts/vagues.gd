@@ -3,7 +3,9 @@ extends Node2D
 # Movement parameters
 @export var initial_speed: float = 25.0  # Starting speed (pixels per second)
 @export var acceleration: float = 10.0   # How fast the speed increases
-@export var max_speed: float = 100.0     # Maximum speed limit (optional)
+@export var max_speed: float = 3000000    # Maximum speed limit (optional)
+
+@onready var game_manager := %GameManager
 
 # Internal variables
 var current_speed: float
@@ -35,6 +37,9 @@ func _process(delta):
 		
 		# Move the block upward (negative Y direction)
 		position.y -= current_speed * delta
+	if game_manager.game_state == "over":
+		current_speed = 1000.0
+		 
 
 # Optional: Stop when reaching a certain height
 func _check_bounds():

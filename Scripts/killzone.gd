@@ -1,23 +1,18 @@
 extends Area2D
+class_name KillZone
+
 
 @onready var timer: Timer = $Timer
-@onready var game_over_label: Label = $Label
+@onready var player : Player= get_node("%Player")
+@onready var game_manager = %GameManager 
 
 func _ready():
-	# Hide the game over label at start
-	if game_over_label:
-		game_over_label.visible = false
+	pass 
 
 func _on_body_entered(body: Node2D) -> void:
-	# Only proceed if it's a CharacterBody2D
-	if body is CharacterBody2D:
-		# Show game over label
-		if game_over_label:
-			game_over_label.visible = true
-		
-		# Start 3-second timer for restart
-		timer.wait_time = 3.0
-		timer.start()
-
+	if body.is_in_group("Player"):
+		game_manager.handle_game_over()
+		print("enter kill zone")
 func _on_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene() 
+ 

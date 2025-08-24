@@ -7,7 +7,8 @@ const JUMP_VELOCITY = -600.0
 const DEATH_FALL_SPEED = 300.0  # Initial fall speed
 const DEATH_GRAVITY_MULTIPLIER = 0.5  # Slower gravity during death
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_2d : AnimatedSprite2D = get_node("AnimatedSprite2D")
+#@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 #@onready var game_manager: Node = $"../Game Manager"
 @onready var game_manager = get_node("%GameManager")
 @onready var jump_sfx: AudioStreamPlayer2D = $"jump sfx"
@@ -16,17 +17,20 @@ const DEATH_GRAVITY_MULTIPLIER = 0.5  # Slower gravity during death
 @export var screen_width: float = 1024  # width of your viewport
 @export var screen_height: float = 600  # height of your viewport
 
+#public vriaables
+var player_health : int = 2 
 var is_dead = false
 var death_timer = 0.0
 var has_fallen_off_screen = false
 const DEATH_RESTART_DELAY = 2.0
 
+func _ready() -> void:
+	pass 
+
 func _physics_process(delta: float) -> void:
 	# Check for death state
-	if game_manager.player_health <= 0 and not is_dead:
+	if player_health == 0 and is_dead:
 		start_death_sequence()
-		return
-	
 	# If dead, handle death physics
 	if is_dead:
 		handle_death_physics(delta)
@@ -41,19 +45,19 @@ func handle_normal_physics(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# Handle all 4 animation possibilities
-	if is_on_floor() and game_manager.player_health == 2:
+	if is_on_floor() and player_health == 2:
 		# On floor with full health
 		if animated_sprite_2d.animation != "idle":
 			animated_sprite_2d.play("idle")
-	elif is_on_floor() and game_manager.player_health == 1:
+	elif is_on_floor() and player_health == 1:
 		# On floor with low health
 		if animated_sprite_2d.animation != "1up_idle":
 			animated_sprite_2d.play("1up_idle")
-	elif not is_on_floor() and game_manager.player_health == 2:
+	elif not is_on_floor() and player_health == 2:
 		# In air with full health
 		if animated_sprite_2d.animation != "fly":
 			animated_sprite_2d.play("fly")
-	elif not is_on_floor() and game_manager.player_health == 1:
+	elif not is_on_floor() and player_health == 1:
 		# In air with low health
 		if animated_sprite_2d.animation != "1up_fly":
 			animated_sprite_2d.play("1up_fly")
@@ -78,7 +82,6 @@ func handle_normal_physics(delta: float) -> void:
 	move_and_slide()
 
 func start_death_sequence():
-	is_dead = true
 	death_timer = 0.0
 	has_fallen_off_screen = false
 	
@@ -92,7 +95,6 @@ func start_death_sequence():
 	# Set initial death velocity (moderate downward speed)
 	velocity.y = DEATH_FALL_SPEED
 	velocity.x = 0  # Stop horizontal movement
-
 func handle_death_physics(delta: float) -> void:
 	# Apply reduced gravity for a more dramatic fall
 	velocity.y += get_gravity().y * delta * DEATH_GRAVITY_MULTIPLIER
@@ -111,41 +113,21 @@ func handle_death_physics(delta: float) -> void:
 	# Only start countdown after falling off screen
 	if has_fallen_off_screen:
 		death_timer += delta
-		
-		# Check if enough time has passed to restart
 		if death_timer >= DEATH_RESTART_DELAY:
-			restart_game()
+			get_tree().reload_current_scene()
 
-func restart_game():
-	# Reset death state
-	is_dead = false
-	death_timer = 0.0
-	has_fallen_off_screen = false
-	
-	# Re-enable collision detection
-	set_collision_layer(1)  # Adjust layer numbers as needed
-	set_collision_mask(1)   # Adjust mask numbers as needed
-	
-	# Reset velocity
-	velocity = Vector2.ZERO
-	
-	# You can either:
-	# 1. Reload the current scene
-	get_tree().reload_current_scene()
-	
-	# 2. Or call a game manager restart function
-	# if game_manager.has_method("restart_game"):
-	#     game_manager.restart_game()
-
-func _process(delte : float):
-	# Only do screen wrapping when alive
+func handle_player_horizontal_wrap(is_dead):
 	if not is_dead:
-		# Horizontal wrap
 		if position.x > screen_width:
 			position.x = 0
 		elif position.x < 0:
 			position.x = screen_width
 
+	
+
+func _process(delte : float):
+	handle_player_horizontal_wrap(is_dead)
+		
 func flash_white():
 	# Only flash if not dead
 	if is_dead:

@@ -1,0 +1,317 @@
+[gd_scene load_steps=22 format=4 uid="uid://ridup5mdnfqp"]
+
+[ext_resource type="Script" uid="uid://chaw7xlxlj0wa" path="res://Scripts/level1.gd" id="1_yl4s6"]
+[ext_resource type="Texture2D" uid="uid://dqt4w6sxj8ly0" path="res://Assets/purple sky.jpg" id="2_kt2x8"]
+[ext_resource type="Script" path="res://Scripts/stars.gd" id="3_uvbf8"]
+[ext_resource type="Texture2D" uid="uid://b5g83b4u1cbfp" path="res://Assets/S001_nyknck.png" id="4_hk2b6"]
+[ext_resource type="PackedScene" uid="uid://b4bjra2c66cbv" path="res://Scenes/ArcadeLevel.tscn" id="5_j32d5"]
+[ext_resource type="PackedScene" path="res://Scenes/character_body_2d.tscn" id="6_0f42i"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_swvig"]
+[ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="8_dbohx"]
+[ext_resource type="AudioStream" uid="uid://csboujqg34f0t" path="res://music/Balloon start riding 1.wav" id="9_6ly8b"]
+[ext_resource type="PackedScene" uid="uid://cdqo7wmuqiw75" path="res://Scenes/vagues.tscn" id="10_r5102"]
+[ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="11_df8b0"]
+[ext_resource type="PackedScene" uid="uid://bbw5n435b4tgq" path="res://Scenes/enemy.tscn" id="12_003du"]
+[ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="13_2bvpm"]
+[ext_resource type="PackedScene" uid="uid://baw7yy7hwc7yq" path="res://Scenes/trophy.tscn" id="14_82jtv"]
+[ext_resource type="PackedScene" uid="uid://bc7la8onln4hu" path="res://Scenes/game_over_label.tscn" id="15_kt2x8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpebp"]
+atlas = ExtResource("4_hk2b6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xk2i"]
+atlas = ExtResource("4_hk2b6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hinp3"]
+atlas = ExtResource("4_hk2b6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84i4k"]
+atlas = ExtResource("4_hk2b6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1klhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpebp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xk2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hinp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84i4k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xkr"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_yl4s6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = -158.0
+offset_top = 48.0
+offset_right = 2242.0
+offset_bottom = 2071.0
+scale = Vector2(0.591182, 0.371112)
+texture = ExtResource("2_kt2x8")
+
+[node name="Node" type="Node" parent="CanvasLayer"]
+script = ExtResource("3_uvbf8")
+
+[node name="star2" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(697, 110)
+scale = Vector2(1.31306, 1.39801)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.815604
+speed_scale = 2.0
+
+[node name="star7" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(675, 179)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.495909
+speed_scale = 1.5
+
+[node name="star3" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(92, 327)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.495909
+speed_scale = 0.5
+
+[node name="star12" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1195, 71)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.3
+
+[node name="star11" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1205, 24)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.6
+
+[node name="star10" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(947, 173)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+
+[node name="star9" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(386, 184)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.2
+
+[node name="star8" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(832, 61)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 0.7
+
+[node name="star20" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(243, 292)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.3
+
+[node name="star1" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(357, 58)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.187791
+speed_scale = 1.6
+
+[node name="star15" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(580, 242)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.412915
+speed_scale = 0.2
+
+[node name="star16" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(140, 64)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.412915
+speed_scale = 0.8
+
+[node name="star5" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(425, 142)
+scale = Vector2(1.39029, 1.30167)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 1.1
+
+[node name="star6" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(-81, 146)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 1.4
+
+[node name="star13" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1185, 277)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 0.9
+
+[node name="star14" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(840, 354)
+scale = Vector2(2.44851, 1.89922)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.00215088
+speed_scale = 0.7
+
+[node name="star4" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(1062, 99)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.7
+
+[node name="star17" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(-33, 222)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 1.2
+
+[node name="star18" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(421, 308)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+
+[node name="star19" type="AnimatedSprite2D" parent="CanvasLayer/Node"]
+position = Vector2(185, 198)
+scale = Vector2(0.658821, 0.677726)
+sprite_frames = SubResource("SpriteFrames_1klhd")
+autoplay = "default"
+frame_progress = 0.778125
+speed_scale = 0.9
+
+[node name="ArcadeLevel" parent="." instance=ExtResource("5_j32d5")]
+
+[node name="groundMapLayer" parent="ArcadeLevel" index="0"]
+position = Vector2(-447, -473)
+scale = Vector2(2.03377, 1.72086)
+tile_map_data = PackedByteArray("AAAmABwAAAAAAAAAAAAnABwAAAAAAAAAAAAUABYAAAAAAAAAAAAVABYAAAAAAAAAAAAWABYAAAAAAAAAAAAXABYAAAAAAAAAAAAoABwAAAAAAAAAAAApABwAAAAAAAAAAAAqABwAAAAAAAAAAAAeABAAAAAAAAAAAAAfABAAAAAAAAAAAAAgABAAAAAAAAAAAAAhABAAAAAAAAAAAAAiABAAAAAAAAAAAAAUAPv/AAAAAAAAAAAVAPv/AAAAAAAAAAAWAPv/AAAAAAAAAAAXAPv/AAAAAAAAAAAYAPv/AAAAAAAAAAAZAPv/AAAAAAAAAAAlAPL/AAAAAAAAAAAmAPL/AAAAAAAAAAAnAPL/AAAAAAAAAAAoAPL/AAAAAAAAAAApAPL/AAAAAAAAAAAqAPL/AAAAAAAAAAArAPL/AAAAAAAAAAALAAIAAAAKAAEAAFALAAMAAAAKAAEAAFALAAQAAAAKAAEAAFALAAUAAAAKAAEAAFALAAYAAAAKAAEAAFALAAcAAAAKAAEAAFALAAgAAAAKAAEAAFALAAkAAAAKAAEAAFALAAoAAAAKAAEAAFALAAsAAAAKAAEAAFALAO7/AAAKAAEAAFALAO//AAAKAAEAAFALAPD/AAAKAAEAAFALAPH/AAAKAAEAAFALAPL/AAAKAAEAAFALAPP/AAAKAAEAAFALAPT/AAAKAAEAAFALAPX/AAAKAAEAAFAvAAIAAAAKAAEAAFAvAAMAAAAKAAEAAFAvAAQAAAAKAAEAAFAvAAUAAAAKAAEAAFAvAAYAAAAKAAEAAFAvAAcAAAAKAAEAAFAvAAgAAAAKAAEAAFAvAAkAAAAKAAEAAFAvAAoAAAAKAAEAAFAvAAsAAAAKAAEAAFAvAO7/AAAKAAEAAFAvAO//AAAKAAEAAFAvAPD/AAAKAAEAAFAvAPH/AAAKAAEAAFAvAPL/AAAKAAEAAFAvAPP/AAAKAAEAAFAvAPT/AAAKAAEAAFAvAPX/AAAKAAEAAFARAOL/AAAFAAIAAAASAOH/AAAFAAIAAAASAOL/AAAFAAIAAAATAOD/AAAFAAIAAAATAOH/AAAFAAIAAAATAOL/AAAEAAIAAAAUAN//AAAFAAIAAAAUAOD/AAAEAAIAAAAUAOH/AAAEAAIAAAAUAOL/AAAEAAIAAAAbANj/AAAEAAIAAAAbANn/AAAEAAIAAAAbANr/AAAEAAIAAAAbANv/AAAEAAIAAAAbANz/AAAEAAIAAAAbAN3/AAAEAAIAAAAbAN7/AAAEAAIAAAAbAN//AAAEAAIAAAAbAOD/AAAEAAIAAAAbAOH/AAAEAAIAAAAbAOL/AAAEAAIAAAAbAOf/AAAEAAIAAAAcANf/AAAEAAIAAAAcANj/AAAEAAIAAAAcANn/AAAEAAIAAAAcANr/AAAEAAIAAAAcANv/AAAEAAIAAAAcANz/AAAEAAIAAAAcAN3/AAAEAAIAAAAcAN7/AAAEAAIAAAAcAN//AAAEAAIAAAAcAOD/AAAEAAIAAAAcAOH/AAAEAAIAAAAcAOL/AAAEAAIAAAAcAOf/AAAEAAIAAAAcAOj/AAAEAAIAAAAdANb/AAAEAAIAAAAdANf/AAAEAAIAAAAdANj/AAAEAAIAAAAdANn/AAAEAAIAAAAdANr/AAAEAAIAAAAdANv/AAAEAAIAAAAdANz/AAAEAAIAAAAdAN3/AAAEAAIAAAAdAN7/AAAEAAIAAAAdAN//AAAEAAIAAAAdAOD/AAAEAAIAAAAdAOH/AAAEAAIAAAAdAOL/AAAEAAIAAAAdAOf/AAAEAAIAAAAeANb/AAAEAAIAAAAeANf/AAAEAAIAAAAeANj/AAAEAAIAAAAeANn/AAAEAAIAAAAeANr/AAAEAAIAAAAeANv/AAAEAAIAAAAeANz/AAAEAAIAAAAeAN3/AAAEAAIAAAAeAN7/AAAEAAIAAAAeAN//AAAEAAIAAAAeAOD/AAAEAAIAAAAeAOH/AAAEAAIAAAAeAOL/AAAEAAIAAAAmAN7/AAAFAAIAAAAmAN//AAAEAAIAAAAmAOD/AAAEAAIAAAAmAOH/AAAEAAIAAAAmAOL/AAAEAAIAAAAnAN//AAAFAAIAAAAnAOD/AAAEAAIAAAAnAOH/AAAEAAIAAAAnAOL/AAAEAAIAAAAoAOD/AAAFAAIAAAAoAOH/AAAFAAIAAAAoAOL/AAAEAAIAAAApAOH/AAAFAAIAAAApAOL/AAAFAAIAAAAqAOL/AAAFAAIAAAAPAOT/AAAFAAIAAAAQAOP/AAAFAAIAAAAQAOT/AAAFAAIAAAARAOP/AAAFAAIAAAARAOT/AAAEAAIAAAASAOP/AAAEAAIAAAASAOT/AAAEAAIAAAATAOP/AAAEAAIAAAATAOT/AAAEAAIAAAAUAOP/AAAEAAIAAAAUAOT/AAAEAAIAAAAVAN7/AAAFAAIAAAAVAN//AAAEAAIAAAAVAOD/AAAEAAIAAAAVAOH/AAAEAAIAAAAVAOL/AAAEAAIAAAAVAOP/AAAEAAIAAAAVAOT/AAAEAAIAAAAWAN3/AAAFAAIAAAAWAN7/AAAFAAIAAAAWAN//AAAEAAIAAAAWAOD/AAAEAAIAAAAWAOH/AAAEAAIAAAAWAOL/AAAEAAIAAAAWAOP/AAAEAAIAAAAWAOT/AAAEAAIAAAAbAOP/AAAEAAIAAAAbAOT/AAAEAAIAAAAcAOP/AAAEAAIAAAAcAOT/AAAEAAIAAAAcAOn/AAAEAAIAAAAdAOP/AAAEAAIAAAAdAOT/AAAEAAIAAAAdAOj/AAAEAAIAAAAdAOn/AAAEAAIAAAAdAOr/AAAEAAIAAAAeAOP/AAAEAAIAAAAeAOT/AAAEAAIAAAAeAOf/AAAEAAIAAAAeAOj/AAAEAAIAAAAeAOn/AAAEAAIAAAAeAOr/AAAEAAIAAAAfANf/AAAEAAIAAAAfANj/AAAEAAIAAAAfANn/AAAEAAIAAAAfANr/AAAEAAIAAAAfANv/AAAEAAIAAAAfANz/AAAEAAIAAAAfAN3/AAAEAAIAAAAfAN7/AAAEAAIAAAAfAN//AAAEAAIAAAAfAOD/AAAEAAIAAAAfAOH/AAAEAAIAAAAfAOL/AAAEAAIAAAAfAOP/AAAEAAIAAAAfAOT/AAAEAAIAAAAfAOf/AAAEAAIAAAAfAOj/AAAEAAIAAAAfAOn/AAAEAAIAAAAgANj/AAAEAAIAAAAgANn/AAAEAAIAAAAgANr/AAAEAAIAAAAgANv/AAAEAAIAAAAgANz/AAAEAAIAAAAgAN3/AAAEAAIAAAAgAN7/AAAEAAIAAAAgAN//AAAEAAIAAAAgAOD/AAAEAAIAAAAgAOH/AAAEAAIAAAAgAOL/AAAEAAIAAAAgAOP/AAAEAAIAAAAgAOT/AAAEAAIAAAAgAOf/AAAEAAIAAAAmAOP/AAAEAAIAAAAmAOT/AAAEAAIAAAAnAOP/AAAEAAIAAAAnAOT/AAAEAAIAAAAoAOP/AAAEAAIAAAAoAOT/AAAEAAIAAAApAOP/AAAEAAIAAAApAOT/AAAEAAIAAAAqAOP/AAAFAAIAAAAqAOT/AAAEAAIAAAArAOP/AAAFAAIAAAArAOT/AAAFAAIAAAAsAOT/AAAFAAIAAAAcAMP/AAAAAAAAAAAcAMT/AAAAAAAAAAAdAMP/AAAAAAAAAAAdAMT/AAAAAAAAAAAeAMP/AAAAAAAAAAAeAMT/AAAAAAAAAAAfAMP/AAAAAAAAAAAfAMT/AAAAAAAAAAAgAMP/AAAAAAAAAAAgAMT/AAAAAAAAAAAhAMP/AAAAAAAAAAAhAMT/AAAAAAAAAAAiAMP/AAAAAAAAAAAiAMT/AAAAAAAAAAAjAMP/AAAAAAAAAAAjAMT/AAAAAAAAAAAkAMP/AAAAAAAAAAAkAMT/AAAAAAAAAAAYAMP/AAAAAAAAAAAYAMT/AAAAAAAAAAAZAMP/AAAAAAAAAAAZAMT/AAAAAAAAAAAaAMP/AAAAAAAAAAAaAMT/AAAAAAAAAAAbAMP/AAAAAAAAAAAbAMT/AAAAAAAAAAAZACEAAAABAAAAAAAaACEAAAABAAAAAAAbACEAAAABAAAAAAAcACEAAAABAAAAAAAdACEAAAABAAAAAAAeACEAAAABAAAAAAAeACIAAAABAAAAAAAeACMAAAABAAAAAAAdACIAAAABAAAAAAAcACIAAAABAAAAAAAbACIAAAABAAAAAAAaACIAAAABAAAAAAAZACIAAAABAAAAAAAZACMAAAABAAAAAAAZACQAAAABAAAAAAAZACUAAAABAAAAAAAZACYAAAABAAAAAAAZACcAAAABAAAAAAAZACgAAAABAAAAAAAZACkAAAABAAAAAAAZACoAAAABAAAAAAAZACsAAAABAAAAAAAeACQAAAABAAAAAAAeACUAAAABAAAAAAAeACYAAAABAAAAAAAeACcAAAABAAAAAAAeACgAAAABAAAAAAAeACkAAAABAAAAAAA=")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("6_0f42i")]
+unique_name_in_owner = true
+position = Vector2(465, 398)
+scale = Vector2(0.726027, 0.619529)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-5, 13)
+scale = Vector2(2, -8.557)
+limit_left = 1100
+limit_right = 1100
+limit_bottom = 830
+limit_smoothed = true
+script = ExtResource("7_swvig")
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_dbohx")
+
+[node name="score_up" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("9_6ly8b")
+
+[node name="Score" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Score"]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 51.0
+scale = Vector2(2.53133, 1.21387)
+
+[node name="ScoreLabel" type="Label" parent="Score/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 9.0
+offset_right = 73.0
+offset_bottom = 32.0
+scale = Vector2(0.544572, 1.10353)
+text = "SCORE : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vagues" parent="." instance=ExtResource("10_r5102")]
+z_index = 3
+position = Vector2(-110, 713)
+scale = Vector2(3.102, 2.952)
+
+[node name="killzone" parent="Vagues" instance=ExtResource("11_df8b0")]
+position = Vector2(55.584, -308.473)
+scale = Vector2(0.338927, 0.356204)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vagues/killzone"]
+position = Vector2(506, 980)
+shape = SubResource("WorldBoundaryShape2D_21xkr")
+
+[node name="GameOverLabel" parent="Vagues" instance=ExtResource("15_kt2x8")]
+unique_name_in_owner = true
+z_index = 4
+offset_left = 58.508
+offset_top = 23.0592
+offset_right = 588.508
+offset_bottom = 123.059
+scale = Vector2(0.5, 0.5)
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="Node2D" parent="Mobs" instance=ExtResource("12_003du")]
+
+[node name="Node2D2" parent="Mobs" instance=ExtResource("12_003du")]
+position = Vector2(308, -1625)
+
+[node name="Node2D3" parent="Mobs" instance=ExtResource("12_003du")]
+position = Vector2(847, -975)
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_2bvpm")
+volume_db = -5.0
+autoplay = true
+
+[node name="trophy" parent="." instance=ExtResource("14_82jtv")]
+position = Vector2(530, -2217)
+
+[editable path="ArcadeLevel"]
+[editable path="Player"]
+[editable path="Vagues/killzone"]
