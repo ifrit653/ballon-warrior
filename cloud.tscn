@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdp7ftsaju11u"]
+[gd_scene load_steps=5 format=3 uid="uid://cdp7ftsaju11u"]
 
 [ext_resource type="Texture2D" uid="uid://cieeleufc2tjg" path="res://Assets/nuage.png" id="1_b3oxr"]
+[ext_resource type="PackedScene" uid="uid://c74l86xgr45ws" path="res://Scenes/energy_ball.tscn" id="3_fcyt7"]
 [ext_resource type="AudioStream" uid="uid://d22qkx65xb203" path="res://music/electricity-106510.mp3" id="3_qaedo"]
 
 [sub_resource type="GDScript" id="GDScript_fcyt7"]
@@ -224,3 +225,6 @@ script = SubResource("GDScript_fcyt7")
 
 [node name="LightningSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qaedo")
+
+[node name="Node2D" parent="." instance=ExtResource("3_fcyt7")]
+position = Vector2(5, -77)

@@ -4,7 +4,7 @@ extends Node2D
 @export var initial_speed: float = 5.0 # Starting speed (pixels per second)
 @export var acceleration: float = 5.0   # How fast the speed increases
 @export var max_speed: float = 100.0   # Maximum speed limit (optional)
-@onready var goal = %Goal
+
 
 # Internal variables
 var current_speed: float
@@ -36,8 +36,6 @@ func _process(delta):
 		
 		# Move the block upward (negative Y direction)
 		position.y -= current_speed * delta
-	if goal.stage_cleared == true:
-		stop_movement()
 
 # Optional: Stop when reaching a certain height
 func _check_bounds():

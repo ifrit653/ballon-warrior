@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 
 func load_next_level():
 	# Load level 3 (same as your original script)
-	get_tree().change_scene_to_file("res://Scenes/main menu/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")

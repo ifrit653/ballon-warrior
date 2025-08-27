@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://lk61gj5pfvg8" path="res://Scripts/game_manager.gd" id="8_b450f"]
 [ext_resource type="AudioStream" uid="uid://csboujqg34f0t" path="res://music/Balloon start riding 1.wav" id="9_lsgeo"]
 [ext_resource type="PackedScene" uid="uid://cdqo7wmuqiw75" path="res://Scenes/vagues.tscn" id="10_uknif"]
-[ext_resource type="Script" uid="uid://cy22p2pvam7da" path="res://Scripts/vagues2.gd" id="11_6yjhu"]
+[ext_resource type="Script" uid="uid://c5ubyd7n83owd" path="res://Scripts/vagues3.gd" id="11_udgo2"]
 [ext_resource type="PackedScene" uid="uid://c7paumlswgor8" path="res://Scenes/killzone.tscn" id="12_rrsum"]
 [ext_resource type="AudioStream" uid="uid://dm14hj7ub2oa7" path="res://music/Untitled (2).mp3" id="13_mbyov"]
 [ext_resource type="FontFile" uid="uid://c1685htq57nnf" path="res://Assets/Tiles_pack/GomePixel-Rounded.otf" id="14_g3c4m"]
@@ -329,7 +329,7 @@ vertical_alignment = 1
 z_index = 3
 position = Vector2(-164, 692)
 scale = Vector2(2.95049, 2.80738)
-script = ExtResource("11_6yjhu")
+script = ExtResource("11_udgo2")
 initial_speed = 5.0
 acceleration = 5.0
 max_speed = 100.0

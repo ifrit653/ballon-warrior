@@ -83,9 +83,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Always update sprite facing based on current direction
 	if direction.x > 0:
-		animated_sprite_2d.flip_h = true   # Face right
+		animated_sprite_2d.flip_h = false   # Face right
 	elif direction.x < 0:
-		animated_sprite_2d.flip_h = false  # Face left
+		animated_sprite_2d.flip_h = true  # Face left
 
 func choose_direction() -> void:
 	# Pick a new random direction
